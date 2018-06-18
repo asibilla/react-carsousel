@@ -1,15 +1,12 @@
 'use strict';
 
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-/**
- * [exports description]
- * @return {[type]} [description]
- */
 module.exports = () => {
   return {
-    mode: 'production',
-    entry: [path.join(__dirname, 'src', 'index.js')],
+    mode: 'development',
+    entry: [path.join(__dirname, 'demo', 'index.js')],
     output: {
       filename: "index.js",
       path: path.join(__dirname, 'dist')
@@ -33,6 +30,12 @@ module.exports = () => {
           ]
         },
       ]
-    }
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        filename: "./index.html",
+        template: path.join(__dirname, 'demo', 'index.html')
+      })
+    ]
   };
 };

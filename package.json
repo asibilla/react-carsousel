@@ -4,7 +4,9 @@
   "description": "A configurable carousel for react",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run demo",
+    "demo": "webpack-dev-server --config webpack.demo.config.js --open --progress --profile --watch --content-base demo/",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
