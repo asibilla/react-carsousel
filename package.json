@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run demo",
-    "demo": "webpack-dev-server --config webpack.demo.config.js --open --progress --profile --watch --content-base demo/",
-    "build": "webpack --config webpack.config.js"
+    "demo": "webpack-dev-server --config webpack.demo.config.js --open --progress --profile --watch --content-base demo/"
   },
   "repository": {
     "type": "git",
