@@ -16,6 +16,10 @@ let container = css({
   margin: "0 auto"
 });
 
+let config = {
+  infiniteLoop : true
+}
+
 export default class Demo extends React.Component {
 
   returnImageArray() {
@@ -28,7 +32,7 @@ export default class Demo extends React.Component {
       <div className={pageStyle}>
         <h1>Title</h1>
         <div className={container}>
-           <GlamorousReactCarousel images={this.returnImageArray()} />
+           <GlamorousReactCarousel images={this.returnImageArray()} config={config}/>
         </div>
       </div>
     );

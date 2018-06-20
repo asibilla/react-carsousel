@@ -7,7 +7,7 @@ export const view = css({
 });
 
 export const slides = css({
-  transform: 'translate(-100%)'
+  
 });
 
 export const slide = css({
