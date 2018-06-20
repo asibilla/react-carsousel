@@ -1,5 +1,6 @@
 import React from 'react';
-import { view, slides, slide } from './glamorStyles';
+import { view, slides, slide, imageStyle } from './glamorStyles';
+import { CarouselPositions, CarouselTouchEvent } from './carousel.classes';
 
 
 const defaultConfig = {
@@ -11,76 +12,88 @@ export default class GlamorousReactCarousel extends React.Component {
   constructor(props) {
     super(props);
     this.config = Object.assign(defaultConfig, props.config || {});
-    
     this.state = {
-      position: this.defaultPosition,
-      startPosition: this.defaultPosition,
-      startX: 0,
-      startY: 0,
-      deltaX: 0,
-      deltaY: 0,
-      startTime: 0
-    };
-
-    this.groupImages((props.images || []).slice());
-
-    if (this.infinite) {
-      this.loopImages(false);
+      images: this.groupImages((props.images || []).slice()),
+      view: null,
+      positions: null
     }
+    // Bind instance to setPosition for window event listeners.
+    this.setPositions = this.setPositions.bind(this);
   }
 
   get infinite() {
     return this.config.infiniteLoop;
   }
 
-  get defaultPosition() {
-    return this.infinite ? -100 : 0;
-  }
-
-  getPositionStyle(pos) {
-    return {
-      transform: `translate(${pos}%)`
-    }
-  }
-
   groupImages(images) {
-    this.images = [];
+    let groupedImages = [];
     while (images.length) {
-      this.images.push(images.splice(0, this.config.imagesPerSlide));
+      groupedImages.push(images.splice(0, this.config.imagesPerSlide));
     }
+    if (this.infinite) {
+      this.loopImages(groupedImages, false)
+    }
+    return groupedImages;
   }
 
-  loopImages(advance = true) {
+  loopImages(images, advance = true) {
     if (advance) {
-      // Remove first item from array and move to last position.
-      this.images.push(this.images.splice(0, 1));
+       return images.push(images.splice(0, 1));
     }
-    else {
-      // Remove last item from array and move to first position.
-      this.images.unshift(this.images.splice(this.images.length - 1, 1));
+    return images.unshift(images.splice(images.length - 1, 1));
+  }
+
+  setPositions() {
+    if (this.state.view) {
+      this.setState({positions: new CarouselPositions(this.state.view.clientWidth, this.infinite)});
     }
   }
 
   componentDidMount() {
-
+    this.setState({positions: new CarouselPositions(this.view.clientWidth, this.infinite)});
+    this.setState({view: this.view});
+    window.addEventListener("resize", this.setPositions);
+    window.addEventListener("orientationchange", this.setPositions);
   }
 
-  touchstart(event) {
-    console.log('the carousel was touched', event.nativeEvent);
-    console.log(this);
+  touchStart(event) {
+    this.touchEvent = new CarouselTouchEvent(event.nativeEvent, this.state.positions.currentPosition);
+  }
+
+  touchMove(event) {
+    let newPosition = this.touchEvent.touchMove(event.nativeEvent);
+    if (newPosition && newPosition >= this.state.positions.maxLeft && newPosition <= this.state.positions.maxRight) {
+      // TODO: ADD Additional check for no inifinite thresholds
+      this.setState((prevState) => {
+        let newState = Object.assign({}, prevState);
+        newState.positions.currentPosition = newPosition;
+        return newState;
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.setPositions);
+    window.removeEventListener("orientationchange", this.setPositions);
   }
 
   render() {
     return (
-      <div className={view} onTouchStart={e => this.touchstart(e)}>
-        <div className={slides} style={this.getPositionStyle(this.position)}>
+      <div 
+        className={view} 
+        ref={el => this.view = el} 
+        onTouchStart={e => this.touchStart(e)}
+        onTouchMove={e => this.touchMove(e)}
+      >
+        { (this.state.view && this.state.positions) ?
+        <div className={slides} style={this.state.positions.getPositionStyle(this.state.positions.currentPosition)}>
         { 
-          this.images.map((imageGroup, index) => 
+          this.state.images.map((imageGroup, index) => 
             <div className={slide} key={`imagegroup${index}`}>
               {
                 imageGroup.map((image, childIndex) => 
                   <div key={`image${childIndex}`}>
-                    <img src={image} />
+                    <img className={imageStyle} src={image} />
                   </div>
                 )
               }
@@ -88,6 +101,7 @@ export default class GlamorousReactCarousel extends React.Component {
           )
         }
         </div>
+        : ''}
       </div>
     );
   }

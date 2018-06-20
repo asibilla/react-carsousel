@@ -16,3 +16,7 @@ export const slide = css({
   textAlign: 'center',
   verticalAlign: 'top'
 });
+
+export const imageStyle = css({
+  maxWidth: '100%'
+});
