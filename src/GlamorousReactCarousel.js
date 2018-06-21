@@ -3,6 +3,9 @@ import { view, slides, slide, imageStyle } from './glamorStyles';
 import { CarouselPositions, CarouselTouchEvent } from './carousel.classes';
 
 
+// TODO: Add capability to link images,
+
+
 const defaultConfig = {
   imagesPerSlide: 1,
   infiniteLoop: false,
@@ -44,32 +47,62 @@ export default class GlamorousReactCarousel extends React.Component {
   }
 
   setPositions() {
-    if (this.state.view) {
-      this.setState({positions: new CarouselPositions(this.state.view.clientWidth, this.infinite)});
-    }
+    this.setState({positions: new CarouselPositions(this.view.clientWidth, this.infinite)});
+  }
+
+  copyObject(obj) {
+    return Object.assign({}, obj);
   }
 
   componentDidMount() {
-    this.setState({positions: new CarouselPositions(this.view.clientWidth, this.infinite)});
+    this.setPositions();
     this.setState({view: this.view});
     window.addEventListener("resize", this.setPositions);
     window.addEventListener("orientationchange", this.setPositions);
   }
 
   touchStart(event) {
-    this.touchEvent = new CarouselTouchEvent(event.nativeEvent, this.state.positions.currentPosition);
+    this.touchEvent = new CarouselTouchEvent(
+      event.nativeEvent, 
+      this.state.positions.currentPosition, 
+      this.state.positions.width,
+      this.state.positions.defaultPosition
+    );
   }
 
   touchMove(event) {
     let newPosition = this.touchEvent.touchMove(event.nativeEvent);
-    if (newPosition && newPosition >= this.state.positions.maxLeft && newPosition <= this.state.positions.maxRight) {
+    if (newPosition) {
       // TODO: ADD Additional check for no inifinite thresholds
       this.setState((prevState) => {
-        let newState = Object.assign({}, prevState);
+        let newState = this.copyObject(prevState);
         newState.positions.currentPosition = newPosition;
         return newState;
       });
     }
+  }
+
+  touchEnd() {
+    let animateInstructions = this.touchEvent.touchEnd(this.state.positions.currentPosition);
+    this.setState((prevState) => {
+      let newState = this.copyObject(prevState);
+      newState.positions.currentPosition = animateInstructions.position;
+      newState.positions.animationTime = animateInstructions.duration;
+      return newState;
+    }, () => {
+      // If our slide has advanced, we need to re-arrange our slides to maintain an infinite loop.
+      // Wait until after the animation is complete.
+      if (this.state.positions.currentPosition !== this.state.positions.defaultPosition && this.infinite) {
+        window.setTimeout(() => {
+          this.setState(prevState => {
+            let newState = this.copyObject(prevState);
+            newState.images = this.loopImages(newState.images, (animateInstructions.position < 0));
+            newState.positions.animationTime = 0;
+            newState.positions.currentPosition = prevState.positions.defaultPosition;
+          });
+        }, animateInstructions.duration);
+      }
+    });
   }
 
   componentWillUnmount() {
@@ -84,23 +117,24 @@ export default class GlamorousReactCarousel extends React.Component {
         ref={el => this.view = el} 
         onTouchStart={e => this.touchStart(e)}
         onTouchMove={e => this.touchMove(e)}
+        onTouchEnd={e => this.touchEnd(e)}
       >
         { (this.state.view && this.state.positions) ?
-        <div className={slides} style={this.state.positions.getPositionStyle(this.state.positions.currentPosition)}>
-        { 
-          this.state.images.map((imageGroup, index) => 
-            <div className={slide} key={`imagegroup${index}`}>
-              {
-                imageGroup.map((image, childIndex) => 
-                  <div key={`image${childIndex}`}>
-                    <img className={imageStyle} src={image} />
-                  </div>
-                )
-              }
-            </div>
-          )
-        }
-        </div>
+          <div className={slides} style={this.state.positions.getPositionStyle()}>
+            { 
+              this.state.images.map((imageGroup, index) => 
+                <div className={slide} key={`imagegroup${index}`}>
+                  {
+                    imageGroup.map((image, childIndex) => 
+                      <div key={`image${childIndex}`}>
+                        <img className={imageStyle} src={image} />
+                      </div>
+                    )
+                  }
+                </div>
+              )
+            }
+          </div>
         : ''}
       </div>
     );
