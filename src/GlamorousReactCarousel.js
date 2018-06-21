@@ -62,12 +62,16 @@ export default class GlamorousReactCarousel extends React.Component {
   }
 
   touchStart(event) {
-    this.touchEvent = new CarouselTouchEvent(
-      event.nativeEvent, 
-      this.state.positions.currentPosition, 
-      this.state.positions.width,
-      this.state.positions.defaultPosition
-    );
+    if (!this.touchEventInProgress) {
+      this.touchEventInProgress = true;
+      this.touchEvent = new CarouselTouchEvent(
+        event.nativeEvent, 
+        this.state.positions.currentPosition, 
+        this.state.positions.width,
+        this.infinite,
+        this.state.images.length
+      );
+    }
   }
 
   touchMove(event) {
@@ -99,6 +103,8 @@ export default class GlamorousReactCarousel extends React.Component {
             newState.images = this.loopImages(newState.images, (animateInstructions.position < 0));
             newState.positions.animationTime = 0;
             newState.positions.currentPosition = prevState.positions.defaultPosition;
+          }, () => {
+            this.touchEventInProgress = false;
           });
         }, animateInstructions.duration);
       }
@@ -118,6 +124,7 @@ export default class GlamorousReactCarousel extends React.Component {
         onTouchStart={e => this.touchStart(e)}
         onTouchMove={e => this.touchMove(e)}
         onTouchEnd={e => this.touchEnd(e)}
+        onTouchCancel={() => this.touchEventInProgress = false}
       >
         { (this.state.view && this.state.positions) ?
           <div className={slides} style={this.state.positions.getPositionStyle()}>
