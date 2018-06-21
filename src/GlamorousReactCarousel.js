@@ -1,5 +1,13 @@
 import React from 'react';
-import { view, slides, slide, imageStyle } from './glamorStyles';
+import { 
+  view, 
+  slide, 
+  imageStyle, 
+  arrowContainer, 
+  arrowContainerLeft, 
+  arrowContainerRight, 
+  arrow } from './glamorStyles';
+import { returnArrowContainerStyle, returnArrowStyle } from './carousel.methods';
 import { CarouselPositions, CarouselTouchEvent } from './carousel.classes';
 
 
@@ -9,6 +17,11 @@ import { CarouselPositions, CarouselTouchEvent } from './carousel.classes';
 const defaultConfig = {
   imagesPerSlide: 1,
   infiniteLoop: false,
+  mobileBreakpoint: 1023,
+  showArrowsOnMobile: false,
+  showArrowsOnDesktop: true,
+  leftArrowClass: 'g72-arrow-thin-left',
+  rightArrowClass: 'g72-arrow-thin-right'
 };
 
 export default class GlamorousReactCarousel extends React.Component {
@@ -18,7 +31,10 @@ export default class GlamorousReactCarousel extends React.Component {
     this.state = {
       images: this.groupImages((props.images || []).slice()),
       view: null,
-      positions: null
+      positions: null,
+      isMobile: false,
+      rightArrow: null,
+      leftArrow: null
     }
     // Bind instance to setPosition for window event listeners.
     this.setPositions = this.setPositions.bind(this);
@@ -51,6 +67,7 @@ export default class GlamorousReactCarousel extends React.Component {
 
   setPositions() {
     this.setState({positions: new CarouselPositions(this.view.clientWidth, this.infinite)});
+    this.setState({isMobile: window.innerWidth <= this.config.mobileBreakpoint});
   }
 
   copyObject(obj) {
@@ -132,8 +149,14 @@ export default class GlamorousReactCarousel extends React.Component {
         onTouchEnd={e => this.touchEnd(e)}
         onTouchCancel={() => this.touchEventInProgress = false}
       >
+        <div className={`${arrowContainer} ${arrowContainerLeft}`} style={returnArrowContainerStyle(this.state, this.config)}>
+          <div className={`${this.config.leftArrowClass} ${arrow}`} style={returnArrowStyle(this.state, this.config, true)}></div>
+        </div>
+        <div className={`${arrowContainer} ${arrowContainerRight}`} style={returnArrowContainerStyle(this.state, this.config)}>
+        <div className={`${this.config.rightArrowClass} ${arrow}`} style={returnArrowStyle(this.state, this.config, false)}></div>
+        </div>
         { (this.state.view && this.state.positions) ?
-          <div className={slides} style={this.state.positions.getPositionStyle()}>
+          <div className="slides" style={this.state.positions.getPositionStyle()}>
             { 
               this.state.images.map((imageGroup, index) => 
                 <div className={slide} key={`imagegroup${index}`}>
