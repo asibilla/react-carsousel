@@ -18,7 +18,7 @@ let container = css({
 
 let config = {
   infiniteLoop : true
-}
+};
 
 export default class Demo extends React.Component {
 
@@ -30,7 +30,6 @@ export default class Demo extends React.Component {
   render() {
     return (
       <div className={pageStyle}>
-        <h1>Title</h1>
         <div className={container}>
            <GlamorousReactCarousel images={this.returnImageArray()} config={config}/>
         </div>

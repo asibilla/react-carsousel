@@ -30,14 +30,20 @@ class TouchThreshold {
     infinite,
     slideCount
   ) {
-    this.advanceThreshold = width / 3.5;
     this.snapBackPosition = pos;
+
+    // Below values can be tweaked to adjust touch behavior.
+    this.advanceThreshold = width / 3.5;
+    this.elasticEdgeThreshold = width / 4;
+    this.xToYRatio = 1;
+    this.preventVerticalThreshold = 8;
+    this.animationTimeFactor = 150;
 
     if (infinite) {
       this.setInifiniteThresholds(width);
     }
     else {
-      this.setFiniteThresholds(pos, width);
+      this.setFiniteThresholds(pos, width, slideCount);
     }
   }
 
@@ -46,12 +52,14 @@ class TouchThreshold {
     this.maxRight = 0;
     this.advancePosition = this.maxLeft;
     this.previousPosition = this.maxRight;
-    this.rightEdge = this.maxLeft;
-    this.leftEdge = this.maxRight;
   }
 
-  setFiniteThresholds(pos, width) {
-
+  setFiniteThresholds(pos, width, slideCount) {
+    let maxAdvance = (slideCount * width - width + this.elasticEdgeThreshold) * -1;
+    this.advancePosition = (pos - width < maxAdvance) ? this.snapBackPosition : pos - width;
+    this.previousPosition = (pos + width > this.elasticEdgeThreshold) ? this.snapBackPosition : pos + width;
+    this.maxLeft = (pos - width >= maxAdvance) ? this.advancePosition : maxAdvance;
+    this.maxRight = (pos + width <= this.elasticEdgeThreshold) ? this.previousPosition : this.elasticEdgeThreshold;
   }
 }
 
@@ -69,27 +77,22 @@ export class CarouselTouchEvent {
     this.deltaX = 0;
     this.deltaY = 0;
     this.thresholds = new TouchThreshold(currentPos, currentWidth, infinite, slideCount);
-
   }
 
   touchMove(event) {
     this.deltaX = Math.round(event.changedTouches[0].clientX) - this.startX;
     this.deltaY = Math.abs(event.changedTouches[0].clientY - this.startY);
-
-    // TODO: Make this threshold configurable.
     
     // This stops native vertical scrolling if it doesn't meet a threshold.
     // Prevents wobbling when scrolling the carousel horizontally.
-    if (Math.abs(this.deltaY) < 8) {
+    if (Math.abs(this.deltaY) < this.thresholds.preventVerticalThreshold) {
       event.preventDefault();
     }
 
     let newPosition = this.startPos + this.deltaX;
 
-    // TODO: Make this threshold configurable.
-
     // Make sure this is an intentional horizontal movement.
-    if (Math.abs(this.deltaY) / Math.abs(this.deltaX) < 1) {
+    if (Math.abs(this.deltaY) / Math.abs(this.deltaX) < this.thresholds.xToYRatio) {
       // Make sure user can't scroll past next/prev slide.
       if (newPosition >= this.thresholds.maxLeft && newPosition <= this.thresholds.maxRight) {
         return newPosition;
@@ -108,19 +111,19 @@ export class CarouselTouchEvent {
 
     // If over threshold, animate to previous slide.
     if (this.deltaX > this.thresholds.advanceThreshold) {
-      animateInstructions.duration = Math.abs(this.thresholds.maxRight - endPosition) + 150;
+      animateInstructions.duration = Math.abs(this.thresholds.maxRight - endPosition) + this.thresholds.animationTimeFactor;
       animateInstructions.position = this.thresholds.previousPosition;
     }
 
     // If less than neg threshold, animate to next slide. 
     else if (this.deltaX < this.thresholds.advanceThreshold * -1) {
-        animateInstructions.duration = Math.abs(endPosition - (this.thresholds.maxLeft)) + 150;
+        animateInstructions.duration = Math.abs(endPosition - (this.thresholds.maxLeft)) + this.thresholds.animationTimeFactor;
         animateInstructions.position = this.thresholds.advancePosition;
     }
 
     // Otherwise, snap back to the start position.
     else {
-        animateInstructions.duration = Math.abs(endPosition - this.startPos) + 150;
+        animateInstructions.duration = Math.abs(endPosition - this.startPos) + this.thresholds.animationTimeFactor;
     }
 
     return animateInstructions;

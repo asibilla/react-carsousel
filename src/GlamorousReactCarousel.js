@@ -108,6 +108,9 @@ export default class GlamorousReactCarousel extends React.Component {
           });
         }, animateInstructions.duration);
       }
+      else {
+        this.touchEventInProgress = false;
+      }
     });
   }
 
