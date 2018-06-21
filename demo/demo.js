@@ -23,7 +23,7 @@ let config = {
 export default class Demo extends React.Component {
 
   returnImageArray() {
-    let imgArray = [1, 2, 3, 4, 5, 6]
+    let imgArray = [1, 2, 3, 4, 5, 6];
     return imgArray.map(num => `./img/img_${num}.png`);
   }
 

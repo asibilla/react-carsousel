@@ -34,7 +34,10 @@ export default class GlamorousReactCarousel extends React.Component {
       groupedImages.push(images.splice(0, this.config.imagesPerSlide));
     }
     if (this.infinite) {
-      this.loopImages(groupedImages, false)
+      // Duplicate slides. (If there are only 2, we need more so that infinite looping 
+      // will properly work).
+      groupedImages = groupedImages.concat(groupedImages.slice());
+      this.loopImages(groupedImages, false);
     }
     return groupedImages;
   }
