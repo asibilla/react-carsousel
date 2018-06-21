@@ -1,24 +1,58 @@
-export function setPositionProps(newProps = []) {
+import { CarouselPositions } from './carousel.classes';
 
+export function groupImages(images) {
+  let groupedImages = [];
+  while (images.length) {
+    groupedImages.push(images.splice(0, this.config.imagesPerSlide));
+  }
+  if (this.infinite) {
+    // Duplicate slides. (If there are only 2, we need more so that infinite looping 
+    // will properly work).
+    groupedImages = groupedImages.concat(groupedImages.slice());
+    this.loopImages(groupedImages, false);
+  }
+  return groupedImages;
+}
+
+export function loopImages(images, advance = true) {
+  if (advance) {
+    let first = images.splice(0, 1);
+    images.push(first);
+  }
+  else {
+    let last = images.splice(images.length - 1, 1);
+    images.unshift(last);
+  }
+}
+
+export function setPositions() {
+  this.setState({positions: new CarouselPositions(this.view.clientWidth, this.infinite)});
+  this.setState({isMobile: window.innerWidth <= this.config.mobileBreakpoint});
+}
+
+/**
+ * Creates a new state object with a deep copy of 
+ * the positions property.
+ */
+export function setPositionProps(prevState, newPositions) {
+  let newState = Object.assign({}, prevState);
+  newState.positions = Object.assign(prevState.positions, newPositions);
+  return newState;
 }
 
 export function animateCarousel(pos, speed) {
-  this.setState((prevState) => {
-    let newState = this.copyObject(prevState);
-    newState.positions.currentPosition = pos;
-    newState.positions.animationTime = speed;
-    return newState;
-  }, () => {
+  this.setState(prevState => 
+    setPositionProps(prevState, {currentPosition: pos, animationTime: speed}
+  ), () => {
     // If our slide has advanced, we need to re-arrange our slides to maintain an infinite loop.
     // Wait until after the animation is complete.
     if (this.state.positions.currentPosition !== this.state.positions.defaultPosition && this.infinite) {
       window.setTimeout(() => {
         this.setState(prevState => {
-          let newState = this.copyObject(prevState);
+          let newPositions = { currentPosition: prevState.positions.defaultPosition, animationTime : 0};
+          let newState = this.setPositionProps(prevState, newPositions);
           newState.images = prevState.images;
           this.loopImages(newState.images, (pos < 0));
-          newState.positions.animationTime = 0;
-          newState.positions.currentPosition = prevState.positions.defaultPosition;
           return newState;
         }, () => {
           this.animationInProgress = false;

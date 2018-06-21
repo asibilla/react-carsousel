@@ -8,12 +8,20 @@ import {
   arrowContainerRight, 
   arrow } from './glamorStyles';
 import {
+  groupImages,
+  loopImages,
+  setPositions,
   animateCarousel,
   setPositionProps,
   returnArrowContainerStyle, 
   returnArrowStyle
 } from './carousel.methods';
-import { CarouselPositions, CarouselTouchEvent, CarouselClickEvent } from './carousel.classes';
+import {
+  click,
+  touchStart,
+  touchMove,
+  touchEnd
+} from './carousel.events'
 
 
 // TODO: Add capability to link images,
@@ -34,6 +42,20 @@ export default class GlamorousReactCarousel extends React.Component {
   constructor(props) {
     super(props);
     this.config = Object.assign(defaultConfig, props.config || {});
+    
+    // Bind methods to instance where necessary.
+    this.setPositions = setPositions.bind(this);
+    this.animateCarousel = animateCarousel.bind(this);
+    this.setPositionProps = setPositionProps.bind(this);
+    this.loopImages = loopImages.bind(this);
+    this.groupImages = groupImages.bind(this);
+    this.setPositions = setPositions.bind(this);
+    this.click = click.bind(this);
+    this.touchStart = touchStart.bind(this);
+    this.touchMove = touchMove.bind(this);
+    this.touchEnd = touchEnd.bind(this);
+
+    // Set the initial state.
     this.state = {
       images: this.groupImages((props.images || []).slice()),
       view: null,
@@ -42,49 +64,10 @@ export default class GlamorousReactCarousel extends React.Component {
       rightArrow: null,
       leftArrow: null
     }
-
-    // Bind methods to instance where necessary.
-    this.setPositions = this.setPositions.bind(this);
-    this.animateCarousel = animateCarousel.bind(this);
-    this.setPositionProps = setPositionProps.bind(this);
   }
 
   get infinite() {
     return this.config.infiniteLoop;
-  }
-
-  groupImages(images) {
-    let groupedImages = [];
-    while (images.length) {
-      groupedImages.push(images.splice(0, this.config.imagesPerSlide));
-    }
-    if (this.infinite) {
-      // Duplicate slides. (If there are only 2, we need more so that infinite looping 
-      // will properly work).
-      groupedImages = groupedImages.concat(groupedImages.slice());
-      this.loopImages(groupedImages, false);
-    }
-    return groupedImages;
-  }
-
-  loopImages(images, advance = true) {
-    if (advance) {
-      let first = images.splice(0, 1);
-      images.push(first);
-    }
-    else {
-      let last = images.splice(images.length - 1, 1);
-      images.unshift(last);
-    }
-  }
-
-  setPositions() {
-    this.setState({positions: new CarouselPositions(this.view.clientWidth, this.infinite)});
-    this.setState({isMobile: window.innerWidth <= this.config.mobileBreakpoint});
-  }
-
-  copyObject(obj) {
-    return Object.assign({}, obj);
   }
 
   componentDidMount() {
@@ -92,50 +75,6 @@ export default class GlamorousReactCarousel extends React.Component {
     this.setState({view: this.view});
     window.addEventListener("resize", this.setPositions);
     window.addEventListener("orientationchange", this.setPositions);
-  }
-
-  touchStart(event) {
-    if (!this.animationInProgress) {
-      this.animationInProgress = true;
-      this.touchEvent = new CarouselTouchEvent(
-        event.nativeEvent, 
-        this.state.positions.currentPosition, 
-        this.state.positions.width,
-        this.infinite,
-        this.state.images.length
-      );
-    }
-  }
-
-  touchMove(event) {
-    let newPosition = this.touchEvent.touchMove(event.nativeEvent);
-    if (newPosition) {
-      // TODO: ADD Additional check for no inifinite thresholds
-      this.setState((prevState) => {
-        let newState = this.copyObject(prevState);
-        newState.positions.currentPosition = newPosition;
-        return newState;
-      });
-    }
-  }
-
-  touchEnd() {
-    let animateInstructions = this.touchEvent.touchEnd(this.state.positions.currentPosition);
-    this.animateCarousel(animateInstructions.position, animateInstructions.duration);
-  }
-
-  click(next) {
-    if (!this.animationInProgress) {
-      this.animationInProgress = true;
-      let clickEvent = new CarouselClickEvent(
-        next, 
-        this.state.positions.currentPosition, 
-        this.state.positions.width,
-        this.infinite,
-        this.state.images.length
-      );
-      this.animateCarousel(clickEvent.getPos(), this.config.advanceSpeed);
-    }
   }
 
   componentWillUnmount() {
@@ -155,13 +94,13 @@ export default class GlamorousReactCarousel extends React.Component {
       >
         <div className={`${arrowContainer} ${arrowContainerLeft}`} 
           style={returnArrowContainerStyle(this.state, this.config)}
-          onClick={() => {this.click(false)}}
+          onClick={e => {this.click(e, false)}}
         >
           <div className={`${this.config.leftArrowClass} ${arrow}`} style={returnArrowStyle(this.state, this.config, true)}></div>
         </div>
         <div className={`${arrowContainer} ${arrowContainerRight}`} 
           style={returnArrowContainerStyle(this.state, this.config)}
-          onClick={() => {this.click(true)}}
+          onClick={e => {this.click(e, true)}}
         >
           <div className={`${this.config.rightArrowClass} ${arrow}`} style={returnArrowStyle(this.state, this.config, false)}></div>
         </div>
