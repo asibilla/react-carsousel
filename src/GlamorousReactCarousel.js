@@ -7,8 +7,13 @@ import {
   arrowContainerLeft, 
   arrowContainerRight, 
   arrow } from './glamorStyles';
-import { returnArrowContainerStyle, returnArrowStyle } from './carousel.methods';
-import { CarouselPositions, CarouselTouchEvent } from './carousel.classes';
+import {
+  animateCarousel,
+  setPositionProps,
+  returnArrowContainerStyle, 
+  returnArrowStyle
+} from './carousel.methods';
+import { CarouselPositions, CarouselTouchEvent, CarouselClickEvent } from './carousel.classes';
 
 
 // TODO: Add capability to link images,
@@ -17,6 +22,7 @@ import { CarouselPositions, CarouselTouchEvent } from './carousel.classes';
 const defaultConfig = {
   imagesPerSlide: 1,
   infiniteLoop: false,
+  advanceSpeed: 500,
   mobileBreakpoint: 1023,
   showArrowsOnMobile: false,
   showArrowsOnDesktop: true,
@@ -36,8 +42,11 @@ export default class GlamorousReactCarousel extends React.Component {
       rightArrow: null,
       leftArrow: null
     }
-    // Bind instance to setPosition for window event listeners.
+
+    // Bind methods to instance where necessary.
     this.setPositions = this.setPositions.bind(this);
+    this.animateCarousel = animateCarousel.bind(this);
+    this.setPositionProps = setPositionProps.bind(this);
   }
 
   get infinite() {
@@ -60,9 +69,13 @@ export default class GlamorousReactCarousel extends React.Component {
 
   loopImages(images, advance = true) {
     if (advance) {
-       return images.push(images.splice(0, 1));
+      let first = images.splice(0, 1);
+      images.push(first);
     }
-    return images.unshift(images.splice(images.length - 1, 1));
+    else {
+      let last = images.splice(images.length - 1, 1);
+      images.unshift(last);
+    }
   }
 
   setPositions() {
@@ -82,8 +95,8 @@ export default class GlamorousReactCarousel extends React.Component {
   }
 
   touchStart(event) {
-    if (!this.touchEventInProgress) {
-      this.touchEventInProgress = true;
+    if (!this.animationInProgress) {
+      this.animationInProgress = true;
       this.touchEvent = new CarouselTouchEvent(
         event.nativeEvent, 
         this.state.positions.currentPosition, 
@@ -108,30 +121,21 @@ export default class GlamorousReactCarousel extends React.Component {
 
   touchEnd() {
     let animateInstructions = this.touchEvent.touchEnd(this.state.positions.currentPosition);
-    this.setState((prevState) => {
-      let newState = this.copyObject(prevState);
-      newState.positions.currentPosition = animateInstructions.position;
-      newState.positions.animationTime = animateInstructions.duration;
-      return newState;
-    }, () => {
-      // If our slide has advanced, we need to re-arrange our slides to maintain an infinite loop.
-      // Wait until after the animation is complete.
-      if (this.state.positions.currentPosition !== this.state.positions.defaultPosition && this.infinite) {
-        window.setTimeout(() => {
-          this.setState(prevState => {
-            let newState = this.copyObject(prevState);
-            newState.images = this.loopImages(newState.images, (animateInstructions.position < 0));
-            newState.positions.animationTime = 0;
-            newState.positions.currentPosition = prevState.positions.defaultPosition;
-          }, () => {
-            this.touchEventInProgress = false;
-          });
-        }, animateInstructions.duration);
-      }
-      else {
-        this.touchEventInProgress = false;
-      }
-    });
+    this.animateCarousel(animateInstructions.position, animateInstructions.duration);
+  }
+
+  click(next) {
+    if (!this.animationInProgress) {
+      this.animationInProgress = true;
+      let clickEvent = new CarouselClickEvent(
+        next, 
+        this.state.positions.currentPosition, 
+        this.state.positions.width,
+        this.infinite,
+        this.state.images.length
+      );
+      this.animateCarousel(clickEvent.getPos(), this.config.advanceSpeed);
+    }
   }
 
   componentWillUnmount() {
@@ -149,11 +153,17 @@ export default class GlamorousReactCarousel extends React.Component {
         onTouchEnd={e => this.touchEnd(e)}
         onTouchCancel={() => this.touchEventInProgress = false}
       >
-        <div className={`${arrowContainer} ${arrowContainerLeft}`} style={returnArrowContainerStyle(this.state, this.config)}>
+        <div className={`${arrowContainer} ${arrowContainerLeft}`} 
+          style={returnArrowContainerStyle(this.state, this.config)}
+          onClick={() => {this.click(false)}}
+        >
           <div className={`${this.config.leftArrowClass} ${arrow}`} style={returnArrowStyle(this.state, this.config, true)}></div>
         </div>
-        <div className={`${arrowContainer} ${arrowContainerRight}`} style={returnArrowContainerStyle(this.state, this.config)}>
-        <div className={`${this.config.rightArrowClass} ${arrow}`} style={returnArrowStyle(this.state, this.config, false)}></div>
+        <div className={`${arrowContainer} ${arrowContainerRight}`} 
+          style={returnArrowContainerStyle(this.state, this.config)}
+          onClick={() => {this.click(true)}}
+        >
+          <div className={`${this.config.rightArrowClass} ${arrow}`} style={returnArrowStyle(this.state, this.config, false)}></div>
         </div>
         { (this.state.view && this.state.positions) ?
           <div className="slides" style={this.state.positions.getPositionStyle()}>

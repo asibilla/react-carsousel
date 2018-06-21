@@ -63,6 +63,31 @@ class TouchThreshold {
   }
 }
 
+export class CarouselClickEvent {
+  constructor(
+    next,
+    currentPos,
+    currentWidth,
+    infinite,
+    slideCount
+  ) {
+    this.thresholds = new TouchThreshold(
+      currentPos, 
+      currentWidth, 
+      infinite, 
+      slideCount
+    );
+    this.next = next;
+  }
+
+  getPos() {
+    if (this.next) {
+      return this.thresholds.advancePosition;
+    }
+    return this.thresholds.previousPosition;
+  }
+}
+
 export class CarouselTouchEvent {
   constructor(
     event,

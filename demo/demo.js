@@ -17,7 +17,7 @@ let container = css({
 });
 
 let config = {
-  infiniteLoop : true
+  infiniteLoop : false
 };
 
 export default class Demo extends React.Component {
