@@ -10,15 +10,18 @@ const pageStyle = css({
   fontFamily: 'sans-serif'
 });
 
-let container = css({
+const container = css({
   width: '100%',
   maxWidth: '600px',
   margin: "0 auto"
 });
 
-let config = {
-  infiniteLoop : true,
-  imagesPerSlide: 1
+const config = {
+  imagesPerSlide: 1,
+  infiniteLoop: true,
+
+  // Accepts 'dot', 'text', or 'none'.
+  slideIndicator: 'text'
 };
 
 export default class Demo extends React.Component {

@@ -54,6 +54,5 @@ export const indicatorDot = css({
   width: '6px',
   height: '6px',
   margin: '4px',
-  backgroundColor: '#ddd',
   borderRadius: '50%'
 });
