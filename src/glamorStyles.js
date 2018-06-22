@@ -51,9 +51,9 @@ export const indicatorContainer = css({
 
 export const indicatorDot = css({
   display: 'inline-block',
-  width: '10px',
-  height: '10px',
-  margin: '5px',
+  width: '6px',
+  height: '6px',
+  margin: '4px',
   backgroundColor: '#ddd',
   borderRadius: '50%'
 });

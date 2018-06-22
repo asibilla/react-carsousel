@@ -51,19 +51,19 @@ export function getCurrentSlide(prevIndex, isNext) {
   return newIndex;
 }
 
-export function animateCarousel(pos, speed) {
+export function animateCarousel(instructions) {
   this.setState(prevState => {
-    let newState = setPositionProps(prevState, {currentPosition: pos, animationTime: speed});
+    let newState = setPositionProps(prevState, {currentPosition: instructions.position, animationTime: instructions.speed});
     
-    // If the carousel has moved, advance current slide.
-    if (pos !== prevState.positions.defaultPosition) {
-      newState.currentSlide = this.getCurrentSlide(prevState.currentSlide, pos < 0);
+    // If the carousel has moved, advance the slide indicators.
+    if (instructions.hasMoved) {
+      newState.currentSlide = this.getCurrentSlide(prevState.currentSlide, instructions.hasAdvanced);
     }
     return newState;
   }, () => {
 
     // Slide has either progressed to next or previous.
-    if (this.state.positions.currentPosition !== this.state.positions.defaultPosition && this.infinite) {
+    if (instructions.hasMoved && this.infinite) {
       window.setTimeout(() => {
         this.setState(prevState => {
           
@@ -72,12 +72,12 @@ export function animateCarousel(pos, speed) {
           let newPositions = { currentPosition: prevState.positions.defaultPosition, animationTime : 0};
           let newState = this.setPositionProps(prevState, newPositions);
           newState.images = prevState.images;
-          this.loopImages(newState.images, (pos < 0));
+          this.loopImages(newState.images, instructions.hasAdvanced);
           return newState;
         }, () => {
           this.animationInProgress = false;
         });
-      }, speed);
+      }, instructions.speed);
     }
     else {
       this.animationInProgress = false;

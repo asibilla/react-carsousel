@@ -23,7 +23,7 @@ export class CarouselPositions {
   }
 }
 
-class TouchThreshold {
+class EventThreshold {
   constructor(
     pos,
     width,
@@ -63,28 +63,55 @@ class TouchThreshold {
   }
 }
 
+class AnimationInstructions {
+  constructor(
+    position,
+    speed, 
+    hasMoved,
+    hasAdvanced
+  ) {
+    this.position = position;
+    this.speed = speed;
+    this.hasMoved = hasMoved;
+    this.hasAdvanced = hasAdvanced;
+  }
+}
+
 export class CarouselClickEvent {
   constructor(
     next,
     currentPos,
     currentWidth,
     infinite,
-    slideCount
+    slideCount,
+    speed
   ) {
-    this.thresholds = new TouchThreshold(
+    this.thresholds = new EventThreshold(
       currentPos, 
       currentWidth, 
       infinite, 
       slideCount
     );
     this.next = next;
+    this.speed = speed;
   }
 
-  getPos() {
+  get animationInstructions() {
+    let animationInstructions = new AnimationInstructions(
+      this.thresholds.advancePosition,
+      this.speed,
+      false,
+      false
+    );
     if (this.next) {
-      return this.thresholds.advancePosition;
+      animationInstructions.hasMoved = this.thresholds.advancePosition !== this.thresholds.snapBackPosition;
+      animationInstructions.hasAdvanced = true;
     }
-    return this.thresholds.previousPosition;
+    else {
+      animationInstructions.position = this.thresholds.previousPosition;
+      animationInstructions.hasMoved = this.thresholds.previousPosition !== this.thresholds.snapBackPosition;
+    }
+    return animationInstructions;
   }
 }
 
@@ -101,7 +128,7 @@ export class CarouselTouchEvent {
     this.startY = Math.round(event.changedTouches[0].clientY);
     this.deltaX = 0;
     this.deltaY = 0;
-    this.thresholds = new TouchThreshold(currentPos, currentWidth, infinite, slideCount);
+    this.thresholds = new EventThreshold(currentPos, currentWidth, infinite, slideCount);
   }
 
   touchMove(event) {
@@ -129,28 +156,33 @@ export class CarouselTouchEvent {
   }
 
   touchEnd(endPosition) {
-    let animateInstructions = {
-      position: this.thresholds.snapBackPosition,
-      duration: 0
-    }
+    let animationInstructions = new AnimationInstructions(
+      this.thresholds.snapBackPosition,
+      0, 
+      false,
+      false
+    );
 
     // If over threshold, animate to previous slide.
     if (this.deltaX > this.thresholds.advanceThreshold) {
-      animateInstructions.duration = Math.abs(this.thresholds.maxRight - endPosition) + this.thresholds.animationTimeFactor;
-      animateInstructions.position = this.thresholds.previousPosition;
+      animationInstructions.speed = Math.abs(this.thresholds.maxRight - endPosition) + this.thresholds.animationTimeFactor;
+      animationInstructions.position = this.thresholds.previousPosition;
+      animationInstructions.hasMoved = animationInstructions.position !== this.thresholds.snapBackPosition;
     }
 
     // If less than neg threshold, animate to next slide. 
     else if (this.deltaX < this.thresholds.advanceThreshold * -1) {
-        animateInstructions.duration = Math.abs(endPosition - (this.thresholds.maxLeft)) + this.thresholds.animationTimeFactor;
-        animateInstructions.position = this.thresholds.advancePosition;
+        animationInstructions.speed = Math.abs(endPosition - (this.thresholds.maxLeft)) + this.thresholds.animationTimeFactor;
+        animationInstructions.position = this.thresholds.advancePosition;
+        animationInstructions.hasMoved = animationInstructions.position !== this.thresholds.snapBackPosition;
+        animationInstructions.hasAdvanced = true;
     }
 
     // Otherwise, snap back to the start position.
     else {
-        animateInstructions.duration = Math.abs(endPosition - this.startPos) + this.thresholds.animationTimeFactor;
+        animationInstructions.speed = Math.abs(endPosition - this.startPos) + this.thresholds.animationTimeFactor;
     }
 
-    return animateInstructions;
+    return animationInstructions;
   }
 }

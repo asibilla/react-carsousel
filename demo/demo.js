@@ -17,7 +17,7 @@ let container = css({
 });
 
 let config = {
-  infiniteLoop : false,
+  infiniteLoop : true,
   imagesPerSlide: 1
 };
 

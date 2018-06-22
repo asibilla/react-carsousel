@@ -22,7 +22,7 @@ export function touchMove(event) {
 
 export function touchEnd() {
   let animateInstructions = this.touchEvent.touchEnd(this.state.positions.currentPosition);
-  this.animateCarousel(animateInstructions.position, animateInstructions.duration);
+  this.animateCarousel(animateInstructions);
 }
 
 export function click(event, next) {
@@ -34,8 +34,9 @@ export function click(event, next) {
       this.state.positions.currentPosition, 
       this.state.positions.width,
       this.infinite,
-      this.state.images.length
+      this.state.images.length,
+      this.config.advanceSpeed
     );
-    this.animateCarousel(clickEvent.getPos(), this.config.advanceSpeed);
+    this.animateCarousel(clickEvent.animationInstructions);
   }
 }
