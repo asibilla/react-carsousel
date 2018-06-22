@@ -1,13 +1,11 @@
 import React from 'react';
 import SlideIndicator from './SlideIndicator';
+import Arrows from './Arrows';
 import { 
   view, 
   slide, 
   imageStyle, 
-  arrowContainer, 
-  arrowContainerLeft, 
-  arrowContainerRight, 
-  arrow } from './glamorStyles';
+} from './glamorStyles';
 import {
   groupImages,
   loopImages,
@@ -117,18 +115,14 @@ export default class GlamorousReactCarousel extends React.Component {
         onTouchEnd={e => this.touchEnd(e)}
         onTouchCancel={() => this.touchEventInProgress = false}
       >
-        <div className={`${arrowContainer} ${arrowContainerLeft}`} 
-          style={returnArrowContainerStyle(this.state, this.config)}
-          onClick={e => {this.click(e, false)}}
-        >
-          <div className={`${this.config.leftArrowClass} ${arrow}`} style={returnArrowStyle(this.state, this.config, true)}></div>
-        </div>
-        <div className={`${arrowContainer} ${arrowContainerRight}`} 
-          style={returnArrowContainerStyle(this.state, this.config)}
-          onClick={e => {this.click(e, true)}}
-        >
-          <div className={`${this.config.rightArrowClass} ${arrow}`} style={returnArrowStyle(this.state, this.config, false)}></div>
-        </div>
+        <Arrows
+          containerStyle={returnArrowContainerStyle(this.state, this.config)}
+          leftArrowStyle={returnArrowStyle(this.state, this.config, true)}
+          rightArrowStyle={returnArrowStyle(this.state, this.config, false)}
+          leftArrow={this.config.leftArrowClass}
+          rightArrow={this.config.rightArrowClass}
+          click={this.click}
+        />
         { (this.state.view && this.state.positions) ?
           <div className="slides" style={this.state.positions.getPositionStyle()}>
             { 
