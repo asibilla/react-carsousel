@@ -43,3 +43,17 @@ export const arrow = css({
   fontSize: '30px',
   transform: 'translate(-50%, -50%)',
 });
+
+export const indicatorContainer = css({
+  width: '100%',
+  textAlign: 'center'
+});
+
+export const indicatorDot = css({
+  display: 'inline-block',
+  width: '10px',
+  height: '10px',
+  margin: '5px',
+  backgroundColor: '#ddd',
+  borderRadius: '50%'
+});

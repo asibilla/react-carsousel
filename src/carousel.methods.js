@@ -40,15 +40,35 @@ export function setPositionProps(prevState, newPositions) {
   return newState;
 }
 
+export function getCurrentSlide(prevIndex, isNext) {
+  let newIndex = (isNext) ? prevIndex + 1 : prevIndex - 1;
+  if (newIndex < 0) {
+    newIndex = this.slideCount - 1;
+  }
+  else if (newIndex >= this.slideCount) {
+    newIndex = 0;
+  }
+  return newIndex;
+}
+
 export function animateCarousel(pos, speed) {
-  this.setState(prevState => 
-    setPositionProps(prevState, {currentPosition: pos, animationTime: speed}
-  ), () => {
-    // If our slide has advanced, we need to re-arrange our slides to maintain an infinite loop.
-    // Wait until after the animation is complete.
+  this.setState(prevState => {
+    let newState = setPositionProps(prevState, {currentPosition: pos, animationTime: speed});
+    
+    // If the carousel has moved, advance current slide.
+    if (pos !== prevState.positions.defaultPosition) {
+      newState.currentSlide = this.getCurrentSlide(prevState.currentSlide, pos < 0);
+    }
+    return newState;
+  }, () => {
+
+    // Slide has either progressed to next or previous.
     if (this.state.positions.currentPosition !== this.state.positions.defaultPosition && this.infinite) {
       window.setTimeout(() => {
         this.setState(prevState => {
+          
+          // If our slide has advanced, we need to re-arrange our slides to maintain an infinite loop.
+          // Wait until after the animation is complete.
           let newPositions = { currentPosition: prevState.positions.defaultPosition, animationTime : 0};
           let newState = this.setPositionProps(prevState, newPositions);
           newState.images = prevState.images;

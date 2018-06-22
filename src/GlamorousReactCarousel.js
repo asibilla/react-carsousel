@@ -1,4 +1,5 @@
 import React from 'react';
+import SlideIndicator from './SlideIndicator';
 import { 
   view, 
   slide, 
@@ -14,7 +15,8 @@ import {
   animateCarousel,
   setPositionProps,
   returnArrowContainerStyle, 
-  returnArrowStyle
+  returnArrowStyle,
+  getCurrentSlide
 } from './carousel.methods';
 import {
   click,
@@ -34,8 +36,13 @@ const defaultConfig = {
   mobileBreakpoint: 1023,
   showArrowsOnMobile: false,
   showArrowsOnDesktop: true,
+
+  // Pass a glyph class to overide default arrows.
   leftArrowClass: 'g72-arrow-thin-left',
-  rightArrowClass: 'g72-arrow-thin-right'
+  rightArrowClass: 'g72-arrow-thin-right',
+
+  // Accepts 'dot', 'text', or 'none'.
+  slideIndicator: 'dot'
 };
 
 export default class GlamorousReactCarousel extends React.Component {
@@ -50,6 +57,7 @@ export default class GlamorousReactCarousel extends React.Component {
     this.loopImages = loopImages.bind(this);
     this.groupImages = groupImages.bind(this);
     this.setPositions = setPositions.bind(this);
+    this.getCurrentSlide = getCurrentSlide.bind(this);
     this.click = click.bind(this);
     this.touchStart = touchStart.bind(this);
     this.touchMove = touchMove.bind(this);
@@ -58,6 +66,7 @@ export default class GlamorousReactCarousel extends React.Component {
     // Set the initial state.
     this.state = {
       images: this.groupImages((props.images || []).slice()),
+      currentSlide: 0,
       view: null,
       positions: null,
       isMobile: false,
@@ -68,6 +77,22 @@ export default class GlamorousReactCarousel extends React.Component {
 
   get infinite() {
     return this.config.infiniteLoop;
+  }
+
+  get slideIndicatorStyle() {
+    return (this.config.slideIndicator === 'dot') ? 'dot' : 
+      (this.config.slideIndicator === 'text') ? 'text' : 
+      null;
+  }
+
+  get slideCount() {
+    if (this.state.images) {
+      if (this.infinite) {
+        return this.state.images.length / 2;
+      }
+      return this.state.images.length;
+    }
+    return 0;
   }
 
   componentDidMount() {
@@ -120,7 +145,16 @@ export default class GlamorousReactCarousel extends React.Component {
               )
             }
           </div>
-        : ''}
+        : null}
+        {
+          this.slideIndicatorStyle ? 
+            <SlideIndicator 
+              type={this.slideIndicatorStyle} 
+              count={this.slideCount} 
+              current={this.state.currentSlide}
+             /> 
+          : null
+        }
       </div>
     );
   }

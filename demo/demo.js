@@ -17,7 +17,8 @@ let container = css({
 });
 
 let config = {
-  infiniteLoop : false
+  infiniteLoop : false,
+  imagesPerSlide: 1
 };
 
 export default class Demo extends React.Component {
