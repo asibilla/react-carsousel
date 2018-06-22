@@ -18,7 +18,7 @@ const container = css({
 
 const config = {
   imagesPerSlide: 1,
-  infiniteLoop: true,
+  infiniteLoop: false,
 
   // Accepts 'dot', 'text', or 'none'.
   slideIndicator: 'dot'

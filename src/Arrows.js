@@ -25,7 +25,7 @@ export default class Arrows extends React.Component {
           style={this.props.containerStyle}
           onClick={e => {this.props.click(e, true)}}
         >
-          <div className={`${this.props.rightArrow} ${arrow}`} style={this.propsRightArrowStle}></div>
+          <div className={`${this.props.rightArrow} ${arrow}`} style={this.props.rightArrowStyle}></div>
         </div>
       </div>
     )

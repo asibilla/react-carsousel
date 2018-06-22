@@ -115,7 +115,7 @@ export function returnArrowStyle(state, config, left = false) {
     if (state.positions.currentPosition >= 0 && left) {
       return inactive;
     }
-    let rightEdge = ((state.slides.length * state.positions.width - state.positions.width) / config.imagesPerSlide) * -1;
+    let rightEdge = ((state.slides.length / config.imagesPerSlide) * state.positions.width - state.positions.width) * -1;
     if (state.positions.currentPosition <= rightEdge && !left) {
       return inactive;
     }
