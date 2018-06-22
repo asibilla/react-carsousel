@@ -41,7 +41,7 @@ export default class SlideIndicator extends React.Component {
         { 
           this.props.type === 'dot' ? 
             this.createDotHtml()
-          : <div className="ncss-brand fs12-sm text-color-dark-grey">
+          : <div className="fs12-sm text-color-dark-grey">
               {this.numberToText(this.props.current)}
               <span className="text-color-grey"> / {this.numberToText(this.props.count - 1)} </span>
             </div>

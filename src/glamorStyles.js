@@ -14,6 +14,15 @@ export const slide = css({
   verticalAlign: 'top'
 });
 
+export const slideText = css({
+  padding: '15px',
+  whiteSpace: 'normal'
+});
+
+export const slideHeader = css({
+  textTransform: 'uppercase'
+});
+
 export const imageStyle = css({
   display: 'inline-block',
   maxWidth: '100%'

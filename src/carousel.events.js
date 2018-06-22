@@ -8,7 +8,7 @@ export function touchStart(event) {
       this.state.positions.currentPosition, 
       this.state.positions.width,
       this.infinite,
-      this.state.images.length
+      this.state.slides.length
     );
   }
 }
@@ -34,7 +34,7 @@ export function click(event, next) {
       this.state.positions.currentPosition, 
       this.state.positions.width,
       this.infinite,
-      this.state.images.length,
+      this.state.slides.length,
       this.config.advanceSpeed
     );
     this.animateCarousel(clickEvent.animationInstructions);

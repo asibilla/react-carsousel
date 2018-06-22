@@ -1,28 +1,46 @@
 import { CarouselPositions } from './carousel.classes';
 
-export function groupImages(images) {
-  let groupedImages = [];
-  while (images.length) {
-    groupedImages.push(images.splice(0, this.config.imagesPerSlide));
+/**
+ * This method is needed when there is more than one image per slide. 
+ * Takes our array of slide object and returns an array of arrays of 
+ * slide objects. 
+ */
+export function groupSlides(slides) {
+  let groupedSlides = [];
+  while (slides.length) {
+    groupedSlides.push(slides.splice(0, this.config.imagesPerSlide));
   }
   if (this.infinite) {
     // Duplicate slides. (If there are only 2, we need more so that infinite looping 
     // will properly work).
-    groupedImages = groupedImages.concat(groupedImages.slice());
-    this.loopImages(groupedImages, false);
+    groupedSlides = this.loopSlides(groupedSlides.concat(groupedSlides.slice()), false);
   }
-  return groupedImages;
+  return groupedSlides;
 }
 
-export function loopImages(images, advance = true) {
+/**
+ * Maintains infinite looping. Returns a new array that pulls the 
+ * first slide from the existing array and makes it last (next) or the
+ * last slide from the existing array and makes it first (previous).
+ */
+export function loopSlides(slides, advance = true) {
+  let orderedSlides = [], slideToMove;
+  slides.forEach((slide, index) => {
+    if ((advance && index === 0) || (!advance && index === slides.length - 1)) {
+      slideToMove = slide;
+    }
+    else {
+      orderedSlides.push(slide);
+    }
+  });
   if (advance) {
-    let first = images.splice(0, 1);
-    images.push(first);
+    orderedSlides.push(slideToMove);
   }
   else {
-    let last = images.splice(images.length - 1, 1);
-    images.unshift(last);
+    orderedSlides.unshift(slideToMove);
   }
+  return orderedSlides;
+
 }
 
 export function setPositions() {
@@ -71,8 +89,7 @@ export function animateCarousel(instructions) {
           // Wait until after the animation is complete.
           let newPositions = { currentPosition: prevState.positions.defaultPosition, animationTime : 0};
           let newState = this.setPositionProps(prevState, newPositions);
-          newState.images = prevState.images;
-          this.loopImages(newState.images, instructions.hasAdvanced);
+          newState.slides = this.loopSlides(prevState.slides, instructions.hasAdvanced);
           return newState;
         }, () => {
           this.animationInProgress = false;
@@ -98,7 +115,7 @@ export function returnArrowStyle(state, config, left = false) {
     if (state.positions.currentPosition >= 0 && left) {
       return inactive;
     }
-    let rightEdge = (state.images.length * state.positions.width - state.positions.width) * -1;
+    let rightEdge = ((state.slides.length * state.positions.width - state.positions.width) / config.imagesPerSlide) * -1;
     if (state.positions.currentPosition <= rightEdge && !left) {
       return inactive;
     }

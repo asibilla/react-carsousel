@@ -1,3 +1,2 @@
-import GlamorousReactCarousel from './src/index';
-
-export default GlamorousReactCarousel;
+import { GlamorousReactCarousel, GlamorousReactCarouselSlide } from './src/index';
+export { GlamorousReactCarousel, GlamorousReactCarouselSlide };

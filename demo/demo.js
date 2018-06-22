@@ -1,5 +1,5 @@
 import React from 'react';
-import GlamorousReactCarousel from '../index';
+import { GlamorousReactCarousel, GlamorousReactCarouselSlide } from '../index';
 import { css } from 'glamor';
 
 const pageStyle = css({
@@ -21,21 +21,30 @@ const config = {
   infiniteLoop: true,
 
   // Accepts 'dot', 'text', or 'none'.
-  slideIndicator: 'text'
+  slideIndicator: 'dot'
 };
 
 export default class Demo extends React.Component {
 
-  returnImageArray() {
+  returnSlideArray() {
     let imgArray = [1, 2, 3, 4, 5, 6];
-    return imgArray.map(num => `./img/img_${num}.png`);
+    return imgArray.map(num => 
+      new GlamorousReactCarouselSlide(
+        `./img/img_${num}.png`,
+        `#${num}`,
+        `Slide ${num}`,
+        'fs16-sm fs18-lg',
+        `This is some totally real, not fake text for slide ${num}`,
+        'fs12-sm lh16-sm fs14-lg lh-16l text-color-grey'
+      )
+    );
   }
 
   render() {
     return (
       <div className={pageStyle}>
-        <div className={container}>
-           <GlamorousReactCarousel images={this.returnImageArray()} config={config}/>
+        <div className={`${container} ncss-brand`}>
+           <GlamorousReactCarousel slides={this.returnSlideArray()} config={config}/>
         </div>
       </div>
     );

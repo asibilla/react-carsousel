@@ -1,14 +1,11 @@
 import React from 'react';
+import Slides from './Slides';
 import SlideIndicator from './SlideIndicator';
 import Arrows from './Arrows';
-import { 
-  view, 
-  slide, 
-  imageStyle, 
-} from './glamorStyles';
+import { view } from './glamorStyles';
 import {
-  groupImages,
-  loopImages,
+  groupSlides,
+  loopSlides,
   setPositions,
   animateCarousel,
   setPositionProps,
@@ -29,7 +26,7 @@ import {
 
 const defaultConfig = {
   imagesPerSlide: 1,
-  infiniteLoop: false,
+  infiniteLoop: true,
   advanceSpeed: 500,
   mobileBreakpoint: 1023,
   showArrowsOnMobile: false,
@@ -52,8 +49,8 @@ export default class GlamorousReactCarousel extends React.Component {
     this.setPositions = setPositions.bind(this);
     this.animateCarousel = animateCarousel.bind(this);
     this.setPositionProps = setPositionProps.bind(this);
-    this.loopImages = loopImages.bind(this);
-    this.groupImages = groupImages.bind(this);
+    this.loopSlides = loopSlides.bind(this);
+    this.groupSlides = groupSlides.bind(this);
     this.setPositions = setPositions.bind(this);
     this.getCurrentSlide = getCurrentSlide.bind(this);
     this.click = click.bind(this);
@@ -63,7 +60,7 @@ export default class GlamorousReactCarousel extends React.Component {
 
     // Set the initial state.
     this.state = {
-      images: this.groupImages((props.images || []).slice()),
+      slides: this.groupSlides((props.slides || []).slice()),
       currentSlide: 0,
       view: null,
       positions: null,
@@ -84,13 +81,20 @@ export default class GlamorousReactCarousel extends React.Component {
   }
 
   get slideCount() {
-    if (this.state.images) {
+    if (this.state.slides) {
       if (this.infinite) {
-        return this.state.images.length / 2;
+        return this.state.slides.length / 2;
       }
-      return this.state.images.length;
+      return this.state.slides.length;
     }
     return 0;
+  }
+
+  get slideWidthStyle() {
+    return {
+      display: 'inline-block',
+      width: `${100 / this.config.imagesPerSlide}%`
+    };
   }
 
   componentDidMount() {
@@ -124,21 +128,7 @@ export default class GlamorousReactCarousel extends React.Component {
           click={this.click}
         />
         { (this.state.view && this.state.positions) ?
-          <div className="slides" style={this.state.positions.getPositionStyle()}>
-            { 
-              this.state.images.map((imageGroup, index) => 
-                <div className={slide} key={`imagegroup${index}`}>
-                  {
-                    imageGroup.map((image, childIndex) => 
-                      <div key={`image${childIndex}`}>
-                        <img className={imageStyle} src={image} />
-                      </div>
-                    )
-                  }
-                </div>
-              )
-            }
-          </div>
+          <Slides slides={this.state.slides} position={this.state.positions.getPositionStyle()} width={this.slideWidthStyle} />
         : null}
         {
           this.slideIndicatorStyle ? 

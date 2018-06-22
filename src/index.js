@@ -1,3 +1,4 @@
 import GlamorousReactCarousel from './GlamorousReactCarousel';
+import GlamorousReactCarouselSlide from './slide.class';
 
-export default GlamorousReactCarousel;
+export { GlamorousReactCarousel, GlamorousReactCarouselSlide };
