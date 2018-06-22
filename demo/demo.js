@@ -18,10 +18,11 @@ const container = css({
 
 const config = {
   imagesPerSlide: 1,
-  infiniteLoop: false,
+  infiniteLoop: true,
 
   // Accepts 'dot', 'text', or 'none'.
-  slideIndicator: 'dot'
+  slideIndicator: 'dot',
+  theme: 'light'
 };
 
 export default class Demo extends React.Component {

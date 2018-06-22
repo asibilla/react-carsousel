@@ -15,7 +15,10 @@ export default class SlideIndicator extends React.Component {
   }
 
   getDotColor(index) {
-    return (!this.isActive(index)) ? 'bg-light-grey' : 'bg-grey'
+    if (this.props.theme === 'dark') {
+      return (!this.isActive(index)) ? 'bg-medium-grey' : 'bg-accent';
+    }
+    return (!this.isActive(index)) ? 'bg-light-grey' : 'bg-grey';
   }
 
   createDotHtml() {

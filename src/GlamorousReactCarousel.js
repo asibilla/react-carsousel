@@ -31,13 +31,13 @@ const defaultConfig = {
   mobileBreakpoint: 1023,
   showArrowsOnMobile: false,
   showArrowsOnDesktop: true,
-
   // Pass a glyph class to overide default arrows.
   leftArrowClass: 'g72-arrow-thin-left',
   rightArrowClass: 'g72-arrow-thin-right',
-
   // Accepts 'dot', 'text', or 'none'.
-  slideIndicator: 'dot'
+  slideIndicator: 'dot',
+  // Accepts 'light' or 'dark'.
+  theme: 'light'
 };
 
 export default class GlamorousReactCarousel extends React.Component {
@@ -97,6 +97,10 @@ export default class GlamorousReactCarousel extends React.Component {
     };
   }
 
+  get viewStyle() {
+    return (this.config.theme === 'dark') ? 'bg-dark-grey' : 'bg-white';
+  }
+
   componentDidMount() {
     this.setPositions();
     this.setState({view: this.view});
@@ -112,7 +116,7 @@ export default class GlamorousReactCarousel extends React.Component {
   render() {
     return (
       <div 
-        className={view} 
+        className={`${view} ${this.viewStyle}`} 
         ref={el => this.view = el} 
         onTouchStart={e => this.touchStart(e)}
         onTouchMove={e => this.touchMove(e)}
@@ -126,9 +130,15 @@ export default class GlamorousReactCarousel extends React.Component {
           leftArrow={this.config.leftArrowClass}
           rightArrow={this.config.rightArrowClass}
           click={this.click}
+          theme={this.config.theme}
         />
         { (this.state.view && this.state.positions) ?
-          <Slides slides={this.state.slides} position={this.state.positions.getPositionStyle()} width={this.slideWidthStyle} />
+          <Slides 
+            slides={this.state.slides} 
+            position={this.state.positions.getPositionStyle()} 
+            width={this.slideWidthStyle}
+            theme={this.config.theme}
+          />
         : null}
         {
           this.slideIndicatorStyle ? 
@@ -136,6 +146,7 @@ export default class GlamorousReactCarousel extends React.Component {
               type={this.slideIndicatorStyle} 
               count={this.slideCount} 
               current={this.state.currentSlide}
+              theme={this.config.theme}
              /> 
           : null
         }
