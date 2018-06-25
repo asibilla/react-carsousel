@@ -19,9 +19,19 @@ const container = css({
 const config = {
   imagesPerSlide: 1,
   infiniteLoop: true,
-
+  advanceSpeed: 500,
+  autoAdvance: true,
+  autoAdvanceSpeed: 3000,
+  rewind: false,
+  mobileBreakpoint: 1023,
+  showArrowsOnMobile: false,
+  showArrowsOnDesktop: true,
+  // Pass a glyph class to overide default arrows.
+  leftArrowClass: 'g72-arrow-thin-left',
+  rightArrowClass: 'g72-arrow-thin-right',
   // Accepts 'dot', 'text', or 'none'.
   slideIndicator: 'dot',
+  // Accepts 'light' or 'dark'.
   theme: 'light'
 };
 
@@ -35,7 +45,7 @@ export default class Demo extends React.Component {
         `#${num}`,
         `Slide ${num}`,
         'fs16-sm fs18-lg',
-        `This is some totally real, not fake text for slide ${num}`,
+        `This is some totally real, not at all fake text for slide ${num}`,
         'fs12-sm lh16-sm fs14-lg lh-16l text-color-grey'
       )
     );

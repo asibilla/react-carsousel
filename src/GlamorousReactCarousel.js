@@ -9,6 +9,8 @@ import {
   setPositions,
   animateCarousel,
   setPositionProps,
+  autoAdvance,
+  clearAutoAdvance,
   returnArrowContainerStyle, 
   returnArrowStyle,
   getCurrentSlide
@@ -28,6 +30,9 @@ const defaultConfig = {
   imagesPerSlide: 1,
   infiniteLoop: true,
   advanceSpeed: 500,
+  autoAdvance: false,
+  autoAdvanceSpeed: 4000,
+  rewind: false,
   mobileBreakpoint: 1023,
   showArrowsOnMobile: false,
   showArrowsOnDesktop: true,
@@ -45,13 +50,15 @@ export default class GlamorousReactCarousel extends React.Component {
     super(props);
     this.config = Object.assign(defaultConfig, props.config || {});
     
-    // Bind methods to instance where necessary.
+    // Bind methods to instance.
     this.setPositions = setPositions.bind(this);
     this.animateCarousel = animateCarousel.bind(this);
     this.setPositionProps = setPositionProps.bind(this);
     this.loopSlides = loopSlides.bind(this);
     this.groupSlides = groupSlides.bind(this);
     this.setPositions = setPositions.bind(this);
+    this.autoAdvance = autoAdvance.bind(this);
+    this.clearAutoAdvance = clearAutoAdvance.bind(this);
     this.getCurrentSlide = getCurrentSlide.bind(this);
     this.click = click.bind(this);
     this.touchStart = touchStart.bind(this);
@@ -68,6 +75,8 @@ export default class GlamorousReactCarousel extends React.Component {
       rightArrow: null,
       leftArrow: null
     }
+
+    this.autoAdvanceTimeout = null;
   }
 
   get infinite() {
@@ -106,11 +115,13 @@ export default class GlamorousReactCarousel extends React.Component {
     this.setState({view: this.view});
     window.addEventListener("resize", this.setPositions);
     window.addEventListener("orientationchange", this.setPositions);
+    this.autoAdvance();
   }
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.setPositions);
     window.removeEventListener("orientationchange", this.setPositions);
+    this.clearAutoAdvance();
   }
 
   render() {

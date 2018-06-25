@@ -40,7 +40,6 @@ export function loopSlides(slides, advance = true) {
     orderedSlides.unshift(slideToMove);
   }
   return orderedSlides;
-
 }
 
 export function setPositions() {
@@ -49,8 +48,7 @@ export function setPositions() {
 }
 
 /**
- * Creates a new state object with a deep copy of 
- * the positions property.
+ * Helper for setting the 'positions' property of the state.
  */
 export function setPositionProps(prevState, newPositions) {
   let newState = Object.assign({}, prevState);
@@ -58,6 +56,9 @@ export function setPositionProps(prevState, newPositions) {
   return newState;
 }
 
+/**
+ * Keeps track of the currently displayed for the slide indicator component.
+ */
 export function getCurrentSlide(prevIndex, isNext) {
   let newIndex = (isNext) ? prevIndex + 1 : prevIndex - 1;
   if (newIndex < 0) {
@@ -93,6 +94,9 @@ export function animateCarousel(instructions) {
           return newState;
         }, () => {
           this.animationInProgress = false;
+          if (this.config.autoAdvance) {
+            this.autoAdvance();
+          }
         });
       }, instructions.speed);
     }
@@ -102,6 +106,23 @@ export function animateCarousel(instructions) {
   });
 }
 
+export function autoAdvance() {
+  if (!this.autoAdvanceTimeout && this.config.autoAdvance) {
+    this.autoAdvanceTimeout = setInterval(() => this.click(null, true), this.config.autoAdvanceSpeed);
+  }
+}
+
+export function clearAutoAdvance() {
+  if (this.autoAdvanceTimeout) {
+    clearInterval(this.autoAdvanceTimeout);
+    this.autoAdvanceTimeout = null;
+  } 
+}
+
+/**
+ * Determines whether or not carousel arrows will be displayed based
+ * on config and current window width. 
+ */
 export function returnArrowContainerStyle(state, config) {
   if ((!state.isMobile && !config.showArrowsOnDesktop) || (state.isMobile && !config.showArrowsOnMobile)) {
     return {display: 'none'};

@@ -3,6 +3,7 @@ import { CarouselTouchEvent, CarouselClickEvent } from './carousel.classes';
 export function touchStart(event) {
   if (!this.animationInProgress) {
     this.animationInProgress = true;
+    this.clearAutoAdvance();
     this.touchEvent = new CarouselTouchEvent(
       event.nativeEvent, 
       this.state.positions.currentPosition, 
@@ -26,7 +27,10 @@ export function touchEnd() {
 }
 
 export function click(event, next) {
-  event.stopPropagation();
+  if (event) {
+    event.stopPropagation();
+    this.clearAutoAdvance();
+  }
   if (!this.animationInProgress) {
     this.animationInProgress = true;
     let clickEvent = new CarouselClickEvent(

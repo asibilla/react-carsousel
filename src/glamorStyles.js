@@ -15,9 +15,10 @@ export const slide = css({
 });
 
 export const slidesInner = css({
+  height: '100%',
   margin: '15px 30px',
   padding: '15px',
-  borderRadius: '10px',
+  borderRadius: '10px'
 })
 
 export const slideText = css({
