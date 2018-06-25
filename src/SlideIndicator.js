@@ -21,6 +21,14 @@ export default class SlideIndicator extends React.Component {
     return (!this.isActive(index)) ? 'bg-light-grey' : 'bg-grey';
   }
 
+  get activeTextColor() {
+    return (this.props.theme === 'dark') ? 'text-color-accent' : 'text-color-dark-grey';
+  }
+
+  get inactiveTextColor() {
+    return (this.props.theme === 'dark') ? 'text-color-white' : 'text-color-grey';
+  }
+
   createDotHtml() {
     let dots = [];
     for (let i = 0; i < this.props.count; i++) {
@@ -44,9 +52,9 @@ export default class SlideIndicator extends React.Component {
         { 
           this.props.type === 'dot' ? 
             this.createDotHtml()
-          : <div className="fs12-sm text-color-dark-grey">
+          : <div className={`fs12-sm ${this.activeTextColor}`}>
               {this.numberToText(this.props.current)}
-              <span className="text-color-grey"> / {this.numberToText(this.props.count - 1)} </span>
+              <span className={this.inactiveTextColor}> / {this.numberToText(this.props.count - 1)} </span>
             </div>
         }
       </div>

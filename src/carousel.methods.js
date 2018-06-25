@@ -45,6 +45,9 @@ export function loopSlides(slides, advance = true) {
 export function setPositions() {
   this.setState({positions: new CarouselPositions(this.view.clientWidth, this.infinite)});
   this.setState({isMobile: window.innerWidth <= this.config.mobileBreakpoint});
+  if (!this.infinite) {
+    this.setState({currentSlide: 0});
+  }
 }
 
 /**
@@ -101,7 +104,16 @@ export function animateCarousel(instructions) {
       }, instructions.speed);
     }
     else {
-      this.animationInProgress = false;
+      // Carousel has advanced, but infiniteLoop is false.
+      // Check to see if we need to rewind the presentation.
+      if (instructions.hasMoved && this.config.autoAdvance) {
+        this.animationInProgress = false;
+        this.rewind();
+      }
+      else {
+        this.animationInProgress = false;
+        this.autoAdvance();
+      }
     }
   });
 }
@@ -117,6 +129,30 @@ export function clearAutoAdvance() {
     clearInterval(this.autoAdvanceTimeout);
     this.autoAdvanceTimeout = null;
   } 
+}
+
+/**
+ * Rewinds the carousel after the last slide if the carousel is not infinite
+ * and the autoAdvance and rewind config options are set to true.
+ */
+export function rewind() {
+  if (this.state.currentSlide === this.state.slides.length - 1) {
+    this.clearAutoAdvance();
+    if (this.config.rewind) {
+      setTimeout(() => { 
+        this.setState(prevState => {
+          let newState = this.setPositionProps(prevState, {currentPosition: 0, animationTime: 500});
+          newState.currentSlide = 0;
+          return newState;
+        }, () => {
+          this.autoAdvance();
+        });
+      }, this.config.autoAdvanceSpeed);
+    }
+  }
+  else {
+    this.autoAdvance();
+  }
 }
 
 /**

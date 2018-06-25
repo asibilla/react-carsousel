@@ -11,6 +11,7 @@ import {
   setPositionProps,
   autoAdvance,
   clearAutoAdvance,
+  rewind,
   returnArrowContainerStyle, 
   returnArrowStyle,
   getCurrentSlide
@@ -22,26 +23,19 @@ import {
   touchEnd
 } from './carousel.events'
 
-
-// TODO: Add capability to link images,
-
-
 const defaultConfig = {
+  advanceSpeed: 300,
+  autoAdvance: false,
+  autoAdvanceSpeed: 3000,
   imagesPerSlide: 1,
   infiniteLoop: true,
-  advanceSpeed: 500,
-  autoAdvance: false,
-  autoAdvanceSpeed: 4000,
-  rewind: false,
+  leftArrowClass: 'g72-arrow-thin-left',
   mobileBreakpoint: 1023,
   showArrowsOnMobile: false,
   showArrowsOnDesktop: true,
-  // Pass a glyph class to overide default arrows.
-  leftArrowClass: 'g72-arrow-thin-left',
   rightArrowClass: 'g72-arrow-thin-right',
-  // Accepts 'dot', 'text', or 'none'.
+  rewind: false,
   slideIndicator: 'dot',
-  // Accepts 'light' or 'dark'.
   theme: 'light'
 };
 
@@ -59,6 +53,7 @@ export default class GlamorousReactCarousel extends React.Component {
     this.setPositions = setPositions.bind(this);
     this.autoAdvance = autoAdvance.bind(this);
     this.clearAutoAdvance = clearAutoAdvance.bind(this);
+    this.rewind = rewind.bind(this);
     this.getCurrentSlide = getCurrentSlide.bind(this);
     this.click = click.bind(this);
     this.touchStart = touchStart.bind(this);
@@ -102,6 +97,7 @@ export default class GlamorousReactCarousel extends React.Component {
   get slideWidthStyle() {
     return {
       display: 'inline-block',
+      verticalAlign: 'top',
       width: `${100 / this.config.imagesPerSlide}%`
     };
   }

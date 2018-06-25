@@ -17,21 +17,18 @@ const container = css({
 });
 
 const config = {
+  advanceSpeed: 300,
+  autoAdvance: false,
+  autoAdvanceSpeed: 3000,
   imagesPerSlide: 1,
   infiniteLoop: true,
-  advanceSpeed: 500,
-  autoAdvance: true,
-  autoAdvanceSpeed: 3000,
-  rewind: false,
+  leftArrowClass: 'g72-arrow-thin-left',
   mobileBreakpoint: 1023,
   showArrowsOnMobile: false,
   showArrowsOnDesktop: true,
-  // Pass a glyph class to overide default arrows.
-  leftArrowClass: 'g72-arrow-thin-left',
   rightArrowClass: 'g72-arrow-thin-right',
-  // Accepts 'dot', 'text', or 'none'.
+  rewind: false,
   slideIndicator: 'dot',
-  // Accepts 'light' or 'dark'.
   theme: 'light'
 };
 

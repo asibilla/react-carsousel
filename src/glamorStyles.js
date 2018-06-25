@@ -19,7 +19,7 @@ export const slidesInner = css({
   margin: '15px 30px',
   padding: '15px',
   borderRadius: '10px'
-})
+});
 
 export const slideText = css({
   whiteSpace: 'normal'
