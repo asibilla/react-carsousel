@@ -5,10 +5,24 @@ import GlamorousReactCarousel from './GlamorousReactCarousel';
 import { slidesLight } from './data/testData';
 import { config } from './data/testConfig';
 
-test('component renders', () => {
-  const carousel = shallow(
+describe('<GlamorousReactCarousel />', () => { 
+  const carousel = mount(
     <GlamorousReactCarousel slides={slidesLight} config={config} />
   );
-  
-  expect(carousel).toMatchSnapshot();
+
+  test('component renders', () => {
+    expect(carousel).toMatchSnapshot();
+  });
+
+  test('does not break', () => {
+    const emptyCarousel = mount(<GlamorousReactCarousel />)
+    expect(emptyCarousel).toMatchSnapshot();
+  });
+
+  test('init values return correctly', () => {
+    const carouselClass = new GlamorousReactCarousel({config: config, slides: slidesLight});
+    expect(carouselClass.slideCount).toEqual(6);
+    expect(carouselClass.slideIndicatorStyle).toEqual('dot');
+
+  });
 });

@@ -7,7 +7,8 @@
     "start": "npm run demo",
     "demo": "webpack-dev-server --config webpack.demo.config.js --open --progress --profile --watch --content-base demo/",
     "jest": "jest",
-    "test": "npm run jest"
+    "test": "npm run jest",
+    "covreport": "open coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",
@@ -44,7 +45,7 @@
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "./src/**/*.js",
+      "./src/GlamorousReactCarousel.js",
       "!coverage/**"
     ],
     "coverageReporters": [

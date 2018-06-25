@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite id="0" name="/Users/asibil/tools/react-carousel/src/GlamorousReactCarousel.test.js" errors="0" package="/Users/asibil/tools/react-carousel/src/GlamorousReactCarousel.test.js" hostname="localhost" tests="1" failures="0" time="1.548" timestamp="2018-06-25T22:05:36">
+  <testsuite id="0" name="/Users/asibil/tools/react-carousel/src/GlamorousReactCarousel.test.js" errors="0" package="/Users/asibil/tools/react-carousel/src/GlamorousReactCarousel.test.js" hostname="localhost" tests="3" failures="0" time="0.796" timestamp="2018-06-25T22:44:53">
     <properties>
     </properties>
-    <testcase classname="component renders" name="component renders" time="0">
+    <testcase classname="&lt;GlamorousReactCarousel /&gt;" name="component renders" time="0">
+    </testcase>
+    <testcase classname="&lt;GlamorousReactCarousel /&gt;" name="does not break" time="0">
+    </testcase>
+    <testcase classname="&lt;GlamorousReactCarousel /&gt;" name="init values return correctly" time="0">
     </testcase>
     <system-out/>
     <system-err/>

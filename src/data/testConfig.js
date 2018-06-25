@@ -3,7 +3,7 @@ export const config = {
   autoAdvance: false,
   autoAdvanceSpeed: 3000,
   imagesPerSlide: 1,
-  infiniteLoop: true,
+  infiniteLoop: false,
   leftArrowClass: 'g72-arrow-thin-left',
   mobileBreakpoint: 1023,
   showArrowsOnMobile: false,
