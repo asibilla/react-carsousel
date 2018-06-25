@@ -102,3 +102,30 @@ export const slidesDark = [
     'fs12-sm lh16-sm fs14-lg lh-16l text-color-white'
   )
 ];
+
+export const noImages = [
+  new GlamorousReactCarouselSlide(
+    null,
+    '#1',
+    'Slide 1',
+    'fs16-sm fs18-lg',
+    'The average body temperature for a giant anteater is 91 degrees.',
+    'fs12-sm lh16-sm fs14-lg lh-16l text-color-grey'
+  ),
+  new GlamorousReactCarouselSlide(
+    null,
+    '#2',
+    'Slide 2',
+    'fs16-sm fs18-lg',
+    'The gestation period for a Virginia opossum is only 13 days!',
+    'fs12-sm lh16-sm fs14-lg lh-16l text-color-grey'
+  ),
+  new GlamorousReactCarouselSlide(
+    null,
+    '#3',
+    'Slide 3',
+    'fs16-sm fs18-lg',
+    'The North African crested porcupine is the largest porcupine in the world.',
+    'fs12-sm lh16-sm fs14-lg lh-16l text-color-grey'
+  )
+]

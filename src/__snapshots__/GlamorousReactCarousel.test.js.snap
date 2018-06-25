@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component renders 1`] = `
+<div
+  className="css-wq2pmq bg-white"
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+>
+  <Arrows
+    click={[Function]}
+    containerStyle={Object {}}
+    leftArrow="g72-arrow-thin-left"
+    leftArrowStyle={Object {}}
+    rightArrow="g72-arrow-thin-right"
+    rightArrowStyle={Object {}}
+    theme="light"
+  />
+  <SlideIndicator
+    count={6}
+    current={0}
+    theme="light"
+    type="dot"
+  />
+</div>
+`;

@@ -1,8 +1,7 @@
 import React from 'react';
-import { GlamorousReactCarousel, GlamorousReactCarouselSlide } from '../index';
-import { slidesLight, slidesDark } from '../src/data/testData';
+import { GlamorousReactCarousel } from '../index';
+import { slidesLight, slidesDark, noImages } from '../src/data/testData';
 import { css } from 'glamor';
-import { slide } from '../src/styles/glamorStyles';
 
 const pageStyle = css({
   width: '100%',

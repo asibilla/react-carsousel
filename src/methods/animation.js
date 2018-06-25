@@ -56,7 +56,9 @@ export function loopSlides(slides, advance = true) {
  * values are correct.
  */
 export function setPositions() {
-  this.setState({positions: new CarouselPositions(this.view.clientWidth, this.infinite)});
+  if (this.view) {
+    this.setState({positions: new CarouselPositions(this.view.clientWidth, this.infinite)});
+  }
   this.setState({isMobile: window.innerWidth <= this.config.mobileBreakpoint});
   if (!this.infinite) {
     this.setState({currentSlide: 0});
