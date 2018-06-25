@@ -1,6 +1,9 @@
 import { CarouselPositions } from './carousel.classes';
 
 /**
+ * @param {GlamorousReactCarouselSlide[]|Object[]} slides
+ * @returns {GlamorousReactCarouselSlide[][]|Object[][]} 
+ * 
  * This method is needed when there is more than one image per slide. 
  * Takes our array of slide object and returns an array of arrays of 
  * slide objects. 
@@ -19,6 +22,9 @@ export function groupSlides(slides) {
 }
 
 /**
+ * @param {GlamorousReactCarouselSlide[][]|Object[][]} 
+ * @returns {GlamorousReactCarouselSlide[][]|Object[][]} 
+ * 
  * Maintains infinite looping. Returns a new array that pulls the 
  * first slide from the existing array and makes it last (next) or the
  * last slide from the existing array and makes it first (previous).
@@ -42,6 +48,13 @@ export function loopSlides(slides, advance = true) {
   return orderedSlides;
 }
 
+/**
+ * @returns {void}
+ * 
+ * Called on initialization and window resize/orientation change. Keeps 
+ * track of the current width of the carousel to make sure our animation
+ * values are correct.
+ */
 export function setPositions() {
   this.setState({positions: new CarouselPositions(this.view.clientWidth, this.infinite)});
   this.setState({isMobile: window.innerWidth <= this.config.mobileBreakpoint});
@@ -51,6 +64,10 @@ export function setPositions() {
 }
 
 /**
+ * @param {Object} prevState
+ * @param {Object} newPositions
+ * @returns {Object}
+ * 
  * Helper for setting the 'positions' property of the state.
  */
 export function setPositionProps(prevState, newPositions) {
@@ -60,7 +77,9 @@ export function setPositionProps(prevState, newPositions) {
 }
 
 /**
- * Keeps track of the currently displayed for the slide indicator component.
+ * @param {number} prevIndex
+ * @param {boolean} isNext
+ * @returns {number}
  */
 export function getCurrentSlide(prevIndex, isNext) {
   let newIndex = (isNext) ? prevIndex + 1 : prevIndex - 1;
@@ -73,6 +92,14 @@ export function getCurrentSlide(prevIndex, isNext) {
   return newIndex;
 }
 
+/**
+ * 
+ * @param {AnimationInstructions} instructions
+ * @returns {void}
+ * 
+ * Changes the translate and transitionDuration css properties to animate the
+ * carousel after a click or touch event.
+ */
 export function animateCarousel(instructions) {
   this.setState(prevState => {
     let newState = setPositionProps(prevState, {currentPosition: instructions.position, animationTime: instructions.speed});
@@ -118,12 +145,22 @@ export function animateCarousel(instructions) {
   });
 }
 
+/**
+ * @returns {void}
+ * 
+ * Sets interval for autoAdvance if set in config.
+ */
 export function autoAdvance() {
   if (!this.autoAdvanceTimeout && this.config.autoAdvance) {
     this.autoAdvanceTimeout = setInterval(() => this.click(null, true), this.config.autoAdvanceSpeed);
   }
 }
 
+/**
+ * @returns {void}
+ * 
+ * Clears autoAdvance interval.
+ */
 export function clearAutoAdvance() {
   if (this.autoAdvanceTimeout) {
     clearInterval(this.autoAdvanceTimeout);
@@ -132,6 +169,8 @@ export function clearAutoAdvance() {
 }
 
 /**
+ * @returns {void}
+ * 
  * Rewinds the carousel after the last slide if the carousel is not infinite
  * and the autoAdvance and rewind config options are set to true.
  */
@@ -149,6 +188,11 @@ export function rewind() {
         });
       }, this.config.autoAdvanceSpeed);
     }
+    else {
+      // Stop presentation for the remainder of the lifecycle if 
+      // no rewind. This way the presentation only plays once.
+      this.config.autoAdvance = false;
+    }
   }
   else {
     this.autoAdvance();
@@ -156,6 +200,10 @@ export function rewind() {
 }
 
 /**
+ * @param {Object} state
+ * @param {Object} config
+ * @return {Object} returns css object
+ * 
  * Determines whether or not carousel arrows will be displayed based
  * on config and current window width. 
  */
@@ -166,6 +214,15 @@ export function returnArrowContainerStyle(state, config) {
   return {};
 }
 
+/**
+ * @param {Object} state
+ * @param {Object} config
+ * @param {boolean} left
+ * @return {Object} returns css object
+ * 
+ * Makes left/right arrow semi-transparent if the carousel isn't infinite to 
+ * indicate the edge of the presentation.
+ */
 export function returnArrowStyle(state, config, left = false) {
   if (state.positions && !config.infiniteLoop) {
     let inactive = {opacity: '0.3'};
