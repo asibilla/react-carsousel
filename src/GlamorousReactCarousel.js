@@ -85,13 +85,10 @@ export default class GlamorousReactCarousel extends React.Component {
   }
 
   get slideCount() {
-    if (this.state.slides) {
-      if (this.infinite) {
-        return this.state.slides.length / 2;
-      }
-      return this.state.slides.length;
+    if (this.infinite) {
+      return this.state.slides.length / 2;
     }
-    return 0;
+    return this.state.slides.length;
   }
 
   get slideWidthStyle() {

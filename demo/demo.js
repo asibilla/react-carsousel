@@ -20,7 +20,7 @@ const container = css({
 const config = {
   advanceSpeed: 300,
   autoAdvance: false,
-  autoAdvanceSpeed: 3000,
+  autoAdvanceSpeed: 4000,
   imagesPerSlide: 1,
   infiniteLoop: true,
   leftArrowClass: 'g72-arrow-thin-left',

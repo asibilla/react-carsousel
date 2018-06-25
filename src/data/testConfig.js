@@ -1,7 +1,7 @@
-export const config = {
+export const config1 = {
   advanceSpeed: 300,
   autoAdvance: false,
-  autoAdvanceSpeed: 3000,
+  autoAdvanceSpeed: 4000,
   imagesPerSlide: 1,
   infiniteLoop: false,
   leftArrowClass: 'g72-arrow-thin-left',
@@ -13,3 +13,12 @@ export const config = {
   slideIndicator: 'dot',
   theme: 'light'
 };
+export const config2 = {
+  slideIndicator: 'text',
+  theme: 'dark'
+}
+
+export const config3 = {
+  imagesPerSlide: 3,
+  slideIndicator: 'none'
+}

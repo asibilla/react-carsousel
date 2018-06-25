@@ -1,12 +1,1404 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<GlamorousReactCarousel /> component renders 1`] = `
+exports[`<GlamorousReactCarousel /> component renders with alternate slide indicators and theme 1`] = `
+<GlamorousReactCarousel
+  config={
+    Object {
+      "slideIndicator": "text",
+      "theme": "dark",
+    }
+  }
+  slides={
+    Array [
+      GlamorousReactCarouselSlide {
+        "header": "Slide 1",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_1.png",
+        "link": "#1",
+        "text": "The average body temperature for a giant anteater is 91 degrees.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 2",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_2.png",
+        "link": "#2",
+        "text": "The gestation period for a Virginia opossum is only 13 days!",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 3",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_3.png",
+        "link": "#3",
+        "text": "The North African crested porcupine is the largest porcupine in the world.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 4",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_4.png",
+        "link": "#4",
+        "text": "Mustelids comprise the largest family of mammalian canrivores.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 5",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_5.png",
+        "link": "#5",
+        "text": "Sea otters consume approximately 25 percent of their body weight in food each day.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 6",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_6.png",
+        "link": "#6",
+        "text": "Some bats can eat up to 1,200 mosquitoes in an hour.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+    ]
+  }
+>
+  <div
+    className="css-wq2pmq bg-dark-grey"
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+  >
+    <Arrows
+      click={[Function]}
+      containerStyle={Object {}}
+      leftArrow="g72-arrow-thin-left"
+      leftArrowStyle={
+        Object {
+          "opacity": "0.3",
+        }
+      }
+      rightArrow="g72-arrow-thin-right"
+      rightArrowStyle={
+        Object {
+          "opacity": "0.3",
+        }
+      }
+      theme="dark"
+    >
+      <div
+        className="arrows"
+      >
+        <div
+          className="css-wku5bc css-nj4g8d"
+          onClick={[Function]}
+          style={Object {}}
+        >
+          <div
+            className="g72-arrow-thin-left css-1jcaoyh text-color-accent"
+            style={
+              Object {
+                "opacity": "0.3",
+              }
+            }
+          />
+        </div>
+        <div
+          className="css-wku5bc css-q2ki5z"
+          onClick={[Function]}
+          style={Object {}}
+        >
+          <div
+            className="g72-arrow-thin-right css-1jcaoyh text-color-accent"
+            style={
+              Object {
+                "opacity": "0.3",
+              }
+            }
+          />
+        </div>
+      </div>
+    </Arrows>
+    <Slides
+      position={
+        Object {
+          "MozTransform": "translate3d(0px, 0, 0)",
+          "MozTransitionDuration": "0ms",
+          "WebkitTransform": "translate3d(0px, 0, 0)",
+          "WebkitTransitionDuration": "0ms",
+          "transform": "translate3d(0px, 0, 0)",
+          "transistionDuration": "0ms",
+        }
+      }
+      slides={
+        Array [
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 1",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_1.png",
+              "link": "#1",
+              "text": "The average body temperature for a giant anteater is 91 degrees.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 2",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_2.png",
+              "link": "#2",
+              "text": "The gestation period for a Virginia opossum is only 13 days!",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 3",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_3.png",
+              "link": "#3",
+              "text": "The North African crested porcupine is the largest porcupine in the world.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 4",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_4.png",
+              "link": "#4",
+              "text": "Mustelids comprise the largest family of mammalian canrivores.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 5",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_5.png",
+              "link": "#5",
+              "text": "Sea otters consume approximately 25 percent of their body weight in food each day.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 6",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_6.png",
+              "link": "#6",
+              "text": "Some bats can eat up to 1,200 mosquitoes in an hour.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+        ]
+      }
+      theme="dark"
+      width={
+        Object {
+          "display": "inline-block",
+          "verticalAlign": "top",
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="slides"
+        style={
+          Object {
+            "MozTransform": "translate3d(0px, 0, 0)",
+            "MozTransitionDuration": "0ms",
+            "WebkitTransform": "translate3d(0px, 0, 0)",
+            "WebkitTransitionDuration": "0ms",
+            "transform": "translate3d(0px, 0, 0)",
+            "transistionDuration": "0ms",
+          }
+        }
+      >
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup0"
+        >
+          <div
+            className="bg-grey css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_1.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 1
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  The average body temperature for a giant anteater is 91 degrees.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup1"
+        >
+          <div
+            className="bg-grey css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_2.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 2
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  The gestation period for a Virginia opossum is only 13 days!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup2"
+        >
+          <div
+            className="bg-grey css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_3.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 3
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  The North African crested porcupine is the largest porcupine in the world.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup3"
+        >
+          <div
+            className="bg-grey css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_4.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 4
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  Mustelids comprise the largest family of mammalian canrivores.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup4"
+        >
+          <div
+            className="bg-grey css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_5.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 5
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  Sea otters consume approximately 25 percent of their body weight in food each day.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup5"
+        >
+          <div
+            className="bg-grey css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_6.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 6
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  Some bats can eat up to 1,200 mosquitoes in an hour.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Slides>
+    <SlideIndicator
+      count={6}
+      current={0}
+      theme="dark"
+      type="text"
+    >
+      <div
+        className={
+          Object {
+            "data-css-1ales6y": "",
+          }
+        }
+      >
+        <div
+          className="fs12-sm text-color-accent"
+        >
+          01
+          <span
+            className="text-color-white"
+          >
+             / 
+            06
+             
+          </span>
+        </div>
+      </div>
+    </SlideIndicator>
+  </div>
+</GlamorousReactCarousel>
+`;
+
+exports[`<GlamorousReactCarousel /> component renders with default config 1`] = `
+<GlamorousReactCarousel
+  slides={
+    Array [
+      GlamorousReactCarouselSlide {
+        "header": "Slide 1",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_1.png",
+        "link": "#1",
+        "text": "The average body temperature for a giant anteater is 91 degrees.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 2",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_2.png",
+        "link": "#2",
+        "text": "The gestation period for a Virginia opossum is only 13 days!",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 3",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_3.png",
+        "link": "#3",
+        "text": "The North African crested porcupine is the largest porcupine in the world.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 4",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_4.png",
+        "link": "#4",
+        "text": "Mustelids comprise the largest family of mammalian canrivores.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 5",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_5.png",
+        "link": "#5",
+        "text": "Sea otters consume approximately 25 percent of their body weight in food each day.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 6",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_6.png",
+        "link": "#6",
+        "text": "Some bats can eat up to 1,200 mosquitoes in an hour.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+    ]
+  }
+>
+  <div
+    className="css-wq2pmq bg-white"
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+  >
+    <Arrows
+      click={[Function]}
+      containerStyle={Object {}}
+      leftArrow="g72-arrow-thin-left"
+      leftArrowStyle={Object {}}
+      rightArrow="g72-arrow-thin-right"
+      rightArrowStyle={Object {}}
+      theme="light"
+    >
+      <div
+        className="arrows"
+      >
+        <div
+          className="css-wku5bc css-nj4g8d"
+          onClick={[Function]}
+          style={Object {}}
+        >
+          <div
+            className="g72-arrow-thin-left css-1jcaoyh text-color-black"
+            style={Object {}}
+          />
+        </div>
+        <div
+          className="css-wku5bc css-q2ki5z"
+          onClick={[Function]}
+          style={Object {}}
+        >
+          <div
+            className="g72-arrow-thin-right css-1jcaoyh text-color-black"
+            style={Object {}}
+          />
+        </div>
+      </div>
+    </Arrows>
+    <Slides
+      position={
+        Object {
+          "MozTransform": "translate3d(0px, 0, 0)",
+          "MozTransitionDuration": "0ms",
+          "WebkitTransform": "translate3d(0px, 0, 0)",
+          "WebkitTransitionDuration": "0ms",
+          "transform": "translate3d(0px, 0, 0)",
+          "transistionDuration": "0ms",
+        }
+      }
+      slides={
+        Array [
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 6",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_6.png",
+              "link": "#6",
+              "text": "Some bats can eat up to 1,200 mosquitoes in an hour.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 1",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_1.png",
+              "link": "#1",
+              "text": "The average body temperature for a giant anteater is 91 degrees.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 2",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_2.png",
+              "link": "#2",
+              "text": "The gestation period for a Virginia opossum is only 13 days!",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 3",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_3.png",
+              "link": "#3",
+              "text": "The North African crested porcupine is the largest porcupine in the world.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 4",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_4.png",
+              "link": "#4",
+              "text": "Mustelids comprise the largest family of mammalian canrivores.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 5",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_5.png",
+              "link": "#5",
+              "text": "Sea otters consume approximately 25 percent of their body weight in food each day.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 6",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_6.png",
+              "link": "#6",
+              "text": "Some bats can eat up to 1,200 mosquitoes in an hour.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 1",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_1.png",
+              "link": "#1",
+              "text": "The average body temperature for a giant anteater is 91 degrees.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 2",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_2.png",
+              "link": "#2",
+              "text": "The gestation period for a Virginia opossum is only 13 days!",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 3",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_3.png",
+              "link": "#3",
+              "text": "The North African crested porcupine is the largest porcupine in the world.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 4",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_4.png",
+              "link": "#4",
+              "text": "Mustelids comprise the largest family of mammalian canrivores.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 5",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_5.png",
+              "link": "#5",
+              "text": "Sea otters consume approximately 25 percent of their body weight in food each day.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+        ]
+      }
+      theme="light"
+      width={
+        Object {
+          "display": "inline-block",
+          "verticalAlign": "top",
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        className="slides"
+        style={
+          Object {
+            "MozTransform": "translate3d(0px, 0, 0)",
+            "MozTransitionDuration": "0ms",
+            "WebkitTransform": "translate3d(0px, 0, 0)",
+            "WebkitTransitionDuration": "0ms",
+            "transform": "translate3d(0px, 0, 0)",
+            "transistionDuration": "0ms",
+          }
+        }
+      >
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup0"
+        >
+          <div
+            className="bg-color-white css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_6.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 6
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  Some bats can eat up to 1,200 mosquitoes in an hour.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup1"
+        >
+          <div
+            className="bg-color-white css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_1.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 1
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  The average body temperature for a giant anteater is 91 degrees.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup2"
+        >
+          <div
+            className="bg-color-white css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_2.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 2
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  The gestation period for a Virginia opossum is only 13 days!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup3"
+        >
+          <div
+            className="bg-color-white css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_3.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 3
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  The North African crested porcupine is the largest porcupine in the world.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup4"
+        >
+          <div
+            className="bg-color-white css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_4.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 4
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  Mustelids comprise the largest family of mammalian canrivores.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup5"
+        >
+          <div
+            className="bg-color-white css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_5.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 5
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  Sea otters consume approximately 25 percent of their body weight in food each day.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup6"
+        >
+          <div
+            className="bg-color-white css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_6.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 6
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  Some bats can eat up to 1,200 mosquitoes in an hour.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup7"
+        >
+          <div
+            className="bg-color-white css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_1.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 1
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  The average body temperature for a giant anteater is 91 degrees.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup8"
+        >
+          <div
+            className="bg-color-white css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_2.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 2
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  The gestation period for a Virginia opossum is only 13 days!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup9"
+        >
+          <div
+            className="bg-color-white css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_3.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 3
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  The North African crested porcupine is the largest porcupine in the world.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup10"
+        >
+          <div
+            className="bg-color-white css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_4.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 4
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  Mustelids comprise the largest family of mammalian canrivores.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup11"
+        >
+          <div
+            className="bg-color-white css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "100%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_5.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 5
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  Sea otters consume approximately 25 percent of their body weight in food each day.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Slides>
+    <SlideIndicator
+      count={6}
+      current={0}
+      theme="light"
+      type="dot"
+    >
+      <div
+        className={
+          Object {
+            "data-css-1ales6y": "",
+          }
+        }
+      >
+        <div
+          className="css-16cxdbp bg-grey"
+          key="0"
+        />
+        <div
+          className="css-16cxdbp bg-light-grey"
+          key="1"
+        />
+        <div
+          className="css-16cxdbp bg-light-grey"
+          key="2"
+        />
+        <div
+          className="css-16cxdbp bg-light-grey"
+          key="3"
+        />
+        <div
+          className="css-16cxdbp bg-light-grey"
+          key="4"
+        />
+        <div
+          className="css-16cxdbp bg-light-grey"
+          key="5"
+        />
+      </div>
+    </SlideIndicator>
+  </div>
+</GlamorousReactCarousel>
+`;
+
+exports[`<GlamorousReactCarousel /> component renders with default config 2`] = `
 <GlamorousReactCarousel
   config={
     Object {
       "advanceSpeed": 300,
       "autoAdvance": false,
-      "autoAdvanceSpeed": 3000,
+      "autoAdvanceSpeed": 4000,
       "imagesPerSlide": 1,
       "infiniteLoop": false,
       "leftArrowClass": "g72-arrow-thin-left",
@@ -553,10 +1945,69 @@ exports[`<GlamorousReactCarousel /> component renders 1`] = `
 </GlamorousReactCarousel>
 `;
 
-exports[`<GlamorousReactCarousel /> does not break 1`] = `
-<GlamorousReactCarousel>
+exports[`<GlamorousReactCarousel /> component renders with multiple tiles per slide 1`] = `
+<GlamorousReactCarousel
+  config={
+    Object {
+      "imagesPerSlide": 3,
+      "slideIndicator": "none",
+    }
+  }
+  slides={
+    Array [
+      GlamorousReactCarouselSlide {
+        "header": "Slide 1",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_1.png",
+        "link": "#1",
+        "text": "The average body temperature for a giant anteater is 91 degrees.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 2",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_2.png",
+        "link": "#2",
+        "text": "The gestation period for a Virginia opossum is only 13 days!",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 3",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_3.png",
+        "link": "#3",
+        "text": "The North African crested porcupine is the largest porcupine in the world.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 4",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_4.png",
+        "link": "#4",
+        "text": "Mustelids comprise the largest family of mammalian canrivores.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 5",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_5.png",
+        "link": "#5",
+        "text": "Sea otters consume approximately 25 percent of their body weight in food each day.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+      GlamorousReactCarouselSlide {
+        "header": "Slide 6",
+        "headerClass": "fs16-sm fs18-lg",
+        "image": "./img/img_6.png",
+        "link": "#6",
+        "text": "Some bats can eat up to 1,200 mosquitoes in an hour.",
+        "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+      },
+    ]
+  }
+>
   <div
-    className="css-wq2pmq bg-white"
+    className="css-wq2pmq bg-dark-grey"
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchMove={[Function]}
@@ -577,7 +2028,7 @@ exports[`<GlamorousReactCarousel /> does not break 1`] = `
           "opacity": "0.3",
         }
       }
-      theme="light"
+      theme="dark"
     >
       <div
         className="arrows"
@@ -588,7 +2039,7 @@ exports[`<GlamorousReactCarousel /> does not break 1`] = `
           style={Object {}}
         >
           <div
-            className="g72-arrow-thin-left css-1jcaoyh text-color-black"
+            className="g72-arrow-thin-left css-1jcaoyh text-color-accent"
             style={
               Object {
                 "opacity": "0.3",
@@ -602,7 +2053,391 @@ exports[`<GlamorousReactCarousel /> does not break 1`] = `
           style={Object {}}
         >
           <div
-            className="g72-arrow-thin-right css-1jcaoyh text-color-black"
+            className="g72-arrow-thin-right css-1jcaoyh text-color-accent"
+            style={
+              Object {
+                "opacity": "0.3",
+              }
+            }
+          />
+        </div>
+      </div>
+    </Arrows>
+    <Slides
+      position={
+        Object {
+          "MozTransform": "translate3d(0px, 0, 0)",
+          "MozTransitionDuration": "0ms",
+          "WebkitTransform": "translate3d(0px, 0, 0)",
+          "WebkitTransitionDuration": "0ms",
+          "transform": "translate3d(0px, 0, 0)",
+          "transistionDuration": "0ms",
+        }
+      }
+      slides={
+        Array [
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 1",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_1.png",
+              "link": "#1",
+              "text": "The average body temperature for a giant anteater is 91 degrees.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+            GlamorousReactCarouselSlide {
+              "header": "Slide 2",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_2.png",
+              "link": "#2",
+              "text": "The gestation period for a Virginia opossum is only 13 days!",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+            GlamorousReactCarouselSlide {
+              "header": "Slide 3",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_3.png",
+              "link": "#3",
+              "text": "The North African crested porcupine is the largest porcupine in the world.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+          Array [
+            GlamorousReactCarouselSlide {
+              "header": "Slide 4",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_4.png",
+              "link": "#4",
+              "text": "Mustelids comprise the largest family of mammalian canrivores.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+            GlamorousReactCarouselSlide {
+              "header": "Slide 5",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_5.png",
+              "link": "#5",
+              "text": "Sea otters consume approximately 25 percent of their body weight in food each day.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+            GlamorousReactCarouselSlide {
+              "header": "Slide 6",
+              "headerClass": "fs16-sm fs18-lg",
+              "image": "./img/img_6.png",
+              "link": "#6",
+              "text": "Some bats can eat up to 1,200 mosquitoes in an hour.",
+              "textClass": "fs12-sm lh16-sm fs14-lg lh-16l text-color-grey",
+            },
+          ],
+        ]
+      }
+      theme="dark"
+      width={
+        Object {
+          "display": "inline-block",
+          "verticalAlign": "top",
+          "width": "33.333333333333336%",
+        }
+      }
+    >
+      <div
+        className="slides"
+        style={
+          Object {
+            "MozTransform": "translate3d(0px, 0, 0)",
+            "MozTransitionDuration": "0ms",
+            "WebkitTransform": "translate3d(0px, 0, 0)",
+            "WebkitTransitionDuration": "0ms",
+            "transform": "translate3d(0px, 0, 0)",
+            "transistionDuration": "0ms",
+          }
+        }
+      >
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup0"
+        >
+          <div
+            className="bg-grey css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "33.333333333333336%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_1.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 1
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  The average body temperature for a giant anteater is 91 degrees.
+                </p>
+              </div>
+            </div>
+            <div
+              key="slide1"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "33.333333333333336%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_2.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 2
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  The gestation period for a Virginia opossum is only 13 days!
+                </p>
+              </div>
+            </div>
+            <div
+              key="slide2"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "33.333333333333336%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_3.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 3
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  The North African crested porcupine is the largest porcupine in the world.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className={
+            Object {
+              "data-css-v9adss": "",
+            }
+          }
+          key="slidegroup1"
+        >
+          <div
+            className="bg-grey css-1hmp3yg"
+          >
+            <div
+              key="slide0"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "33.333333333333336%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_4.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 4
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  Mustelids comprise the largest family of mammalian canrivores.
+                </p>
+              </div>
+            </div>
+            <div
+              key="slide1"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "33.333333333333336%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_5.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 5
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  Sea otters consume approximately 25 percent of their body weight in food each day.
+                </p>
+              </div>
+            </div>
+            <div
+              key="slide2"
+              onClick={[Function]}
+              style={
+                Object {
+                  "display": "inline-block",
+                  "verticalAlign": "top",
+                  "width": "33.333333333333336%",
+                }
+              }
+            >
+              <img
+                className={
+                  Object {
+                    "data-css-6tem73": "",
+                  }
+                }
+                src="./img/img_6.png"
+              />
+              <div
+                className="css-1pezpx4"
+              >
+                <h1
+                  className="fs16-sm fs18-lg css-459srw"
+                >
+                  Slide 6
+                </h1>
+                <p
+                  className="fs12-sm lh16-sm fs14-lg lh-16l text-color-grey"
+                >
+                  Some bats can eat up to 1,200 mosquitoes in an hour.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Slides>
+  </div>
+</GlamorousReactCarousel>
+`;
+
+exports[`<GlamorousReactCarousel /> does not break if no slides 1`] = `
+<GlamorousReactCarousel>
+  <div
+    className="css-wq2pmq bg-dark-grey"
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+  >
+    <Arrows
+      click={[Function]}
+      containerStyle={Object {}}
+      leftArrow="g72-arrow-thin-left"
+      leftArrowStyle={
+        Object {
+          "opacity": "0.3",
+        }
+      }
+      rightArrow="g72-arrow-thin-right"
+      rightArrowStyle={
+        Object {
+          "opacity": "0.3",
+        }
+      }
+      theme="dark"
+    >
+      <div
+        className="arrows"
+      >
+        <div
+          className="css-wku5bc css-nj4g8d"
+          onClick={[Function]}
+          style={Object {}}
+        >
+          <div
+            className="g72-arrow-thin-left css-1jcaoyh text-color-accent"
+            style={
+              Object {
+                "opacity": "0.3",
+              }
+            }
+          />
+        </div>
+        <div
+          className="css-wku5bc css-q2ki5z"
+          onClick={[Function]}
+          style={Object {}}
+        >
+          <div
+            className="g72-arrow-thin-right css-1jcaoyh text-color-accent"
             style={
               Object {
                 "opacity": "0.3",
@@ -624,12 +2459,12 @@ exports[`<GlamorousReactCarousel /> does not break 1`] = `
         }
       }
       slides={Array []}
-      theme="light"
+      theme="dark"
       width={
         Object {
           "display": "inline-block",
           "verticalAlign": "top",
-          "width": "100%",
+          "width": "33.333333333333336%",
         }
       }
     >
@@ -647,20 +2482,6 @@ exports[`<GlamorousReactCarousel /> does not break 1`] = `
         }
       />
     </Slides>
-    <SlideIndicator
-      count={0}
-      current={0}
-      theme="light"
-      type="dot"
-    >
-      <div
-        className={
-          Object {
-            "data-css-1ales6y": "",
-          }
-        }
-      />
-    </SlideIndicator>
   </div>
 </GlamorousReactCarousel>
 `;
