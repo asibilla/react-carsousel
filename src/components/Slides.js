@@ -5,7 +5,7 @@ import {
   imageStyle,
   slideText,
   slideHeader
-} from './glamorStyles';
+} from '../styles/glamorStyles';
 
 
 export default class Slides extends React.Component {

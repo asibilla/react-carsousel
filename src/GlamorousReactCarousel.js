@@ -1,8 +1,8 @@
 import React from 'react';
-import Slides from './Slides';
-import SlideIndicator from './SlideIndicator';
-import Arrows from './Arrows';
-import { view } from './glamorStyles';
+import Slides from './components/Slides';
+import SlideIndicator from './components/SlideIndicator';
+import Arrows from './components/Arrows';
+import { view } from './styles/glamorStyles';
 import {
   groupSlides,
   loopSlides,
@@ -15,13 +15,13 @@ import {
   returnArrowContainerStyle, 
   returnArrowStyle,
   getCurrentSlide
-} from './carousel.methods';
+} from './methods/animation';
 import {
   click,
   touchStart,
   touchMove,
   touchEnd
-} from './carousel.events'
+} from './methods/events'
 
 const defaultConfig = {
   advanceSpeed: 300,

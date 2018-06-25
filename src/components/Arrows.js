@@ -4,7 +4,7 @@ import {
   arrowContainerLeft, 
   arrowContainerRight, 
   arrow
-} from './glamorStyles';
+} from '../styles/glamorStyles';
 
 
 export default class Arrows extends React.Component {

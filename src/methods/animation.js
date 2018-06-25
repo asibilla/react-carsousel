@@ -1,4 +1,4 @@
-import { CarouselPositions } from './carousel.classes';
+import { CarouselPositions } from '../classes/carousel.classes';
 
 /**
  * @param {GlamorousReactCarouselSlide[]|Object[]} slides

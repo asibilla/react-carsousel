@@ -1,6 +1,8 @@
 import React from 'react';
 import { GlamorousReactCarousel, GlamorousReactCarouselSlide } from '../index';
+import { slidesLight, slidesDark } from '../src/data/testData';
 import { css } from 'glamor';
+import { slide } from '../src/styles/glamorStyles';
 
 const pageStyle = css({
   width: '100%',
@@ -32,25 +34,22 @@ const config = {
   theme: 'light'
 };
 
+//g72-arrow-fill-left
+//g72-arrow-fill-right
+
 export default class Demo extends React.Component {
 
   returnSlideArray() {
-    let imgArray = [1, 2, 3, 4, 5, 6];
-    return imgArray.map(num => 
-      new GlamorousReactCarouselSlide(
-        `./img/img_${num}.png`,
-        `#${num}`,
-        `Slide ${num}`,
-        'fs16-sm fs18-lg',
-        `This is some totally real, not at all fake text for slide ${num}`,
-        'fs12-sm lh16-sm fs14-lg lh-16l text-color-grey'
-      )
-    );
+    return (config.theme === 'dark') ? slidesDark : slidesLight;
+  }
+
+  pageBackgroundClass() {
+    return (config.theme === 'dark') ? 'bg-dark-grey' : 'bg-white';
   }
 
   render() {
     return (
-      <div className={pageStyle}>
+      <div className={`${pageStyle} ${this.pageBackgroundClass()}`}>
         <div className={`${container} ncss-brand`}>
            <GlamorousReactCarousel slides={this.returnSlideArray()} config={config}/>
         </div>

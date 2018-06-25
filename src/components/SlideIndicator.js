@@ -2,7 +2,7 @@ import React from 'react';
 import {
   indicatorContainer,
   indicatorDot
-} from './glamorStyles';
+} from '../styles/glamorStyles';
 
 
 export default class SlideIndicator extends React.Component {

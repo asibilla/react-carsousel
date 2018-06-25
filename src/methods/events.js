@@ -1,4 +1,4 @@
-import { CarouselTouchEvent, CarouselClickEvent } from './carousel.classes';
+import { CarouselTouchEvent, CarouselClickEvent } from '../classes/carousel.classes';
 
 /**
  * @param {Event} event
