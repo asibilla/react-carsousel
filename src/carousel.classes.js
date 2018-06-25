@@ -1,3 +1,9 @@
+/**
+ * @param {number} width
+ * @param {boolean} infinite
+ * 
+ * Links the carousel's movement to css positioning.
+ */
 export class CarouselPositions {
   constructor(
     width,
@@ -9,20 +15,40 @@ export class CarouselPositions {
     this.animationTime = 0;
   }
 
+  /**
+   * @returns {number} the carousel's start position.
+   */
   get defaultPosition() {
     return this.inifinite ? (this.width * -1) : 0;
   }
 
+  /**
+   * @returns {Object} the carousel position as a css object.
+   */
   getPositionStyle() {
     return {
       transform: `translate3d(${this.currentPosition}px, 0, 0)`,
       WebkitTransform: `translate3d(${this.currentPosition}px, 0, 0)`,
+      MozTransform: `translate3d(${this.currentPosition}px, 0, 0)`,
       transistionDuration: `${this.animationTime}ms`,
-      WebkitTransitionDuration: `${this.animationTime}ms`
+      WebkitTransitionDuration: `${this.animationTime}ms`,
+      MozTransitionDuration: `${this.animationTime}ms`
     }
   }
 }
 
+/**
+ * @param {number} pos
+ * @param {number} width
+ * @param {boolean} infinite
+ * @param {number} slideCount
+ * 
+ * Sets limits and thresholds for advance based on
+ * carousel movement. (e.g. How far a user must move
+ * the carousel before it will move to the next slide
+ * on release instead of snapping back to the previous slide).
+ * Limits how far the carousel can move with a single swipe.
+ */
 class EventThreshold {
   constructor(
     pos,
@@ -63,6 +89,15 @@ class EventThreshold {
   }
 }
 
+/**
+ * @param {number} position
+ * @param {number} speed
+ * @param {boolean} hasMoved
+ * @param {boolean} hasAdvanced
+ * 
+ * Instructions passed to the animateCarousel method
+ * that determine the direction/speed of animation.
+ */
 class AnimationInstructions {
   constructor(
     position,
@@ -77,6 +112,17 @@ class AnimationInstructions {
   }
 }
 
+/**
+ * @param {boolean} next
+ * @param {number} currentPos
+ * @param {number} currentWidth
+ * @param {boolean} infinite
+ * @param {number} slideCount
+ * @param {number} speed
+ * 
+ * Converts a click event into an instance
+ * of AnimationInstructions
+ */
 export class CarouselClickEvent {
   constructor(
     next,
@@ -96,6 +142,9 @@ export class CarouselClickEvent {
     this.speed = speed;
   }
 
+  /**
+   * @returns {AnimationInstructions}
+   */
   get animationInstructions() {
     let animationInstructions = new AnimationInstructions(
       this.thresholds.advancePosition,
@@ -115,6 +164,18 @@ export class CarouselClickEvent {
   }
 }
 
+/**
+ * @param {Event} event
+ * @param {number} currentPos
+ * @param {number} currentWidth
+ * @param {boolean} infinite
+ * @param {number} slideCount
+ * 
+ * Links data from ontouchstart/ontouchmove/ontouchend events
+ * to create an instance of AnimationInstructions. Instantiated
+ * ontouchstart. The constructor sets the data that will be
+ * modified by touchmove and touchend.
+ */
 export class CarouselTouchEvent {
   constructor(
     event,
@@ -131,6 +192,10 @@ export class CarouselTouchEvent {
     this.thresholds = new EventThreshold(currentPos, currentWidth, infinite, slideCount);
   }
 
+  /**
+   * @param {Event} event 
+   * @returns {number} the number of pixels moved from touchstart. null if a limit is hit.
+   */
   touchMove(event) {
     this.deltaX = Math.round(event.changedTouches[0].clientX) - this.startX;
     this.deltaY = Math.abs(event.changedTouches[0].clientY - this.startY);
@@ -155,6 +220,10 @@ export class CarouselTouchEvent {
     return null;
   }
 
+  /**
+   * @param {number} endPosition 
+   * @returns {AnimationInstructions}
+   */
   touchEnd(endPosition) {
     let animationInstructions = new AnimationInstructions(
       this.thresholds.snapBackPosition,
